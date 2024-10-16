@@ -1,7 +1,7 @@
 {
     "id": "xl-bad-unsupported-node",
     "type": "comfy",
-    "name": "XL TXT ONLY BASIC 1",
+    "name": "TEST: BAD NODE",
     "description": "workflow description",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
