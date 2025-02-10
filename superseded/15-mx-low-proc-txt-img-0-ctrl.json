@@ -65,7 +65,7 @@
             "aiAngelMix_v30.safetensors"
         ],
         "custom_nodes": [
-            "Pseudocomfy",
+            "pseudocomfy",
             "ComfyUI_IPAdapter_plus"
         ],
         "controlnet": [

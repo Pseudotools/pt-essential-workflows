@@ -19,7 +19,7 @@
             "FAKEMODEL.safetensors"
         ],
         "custom_nodes": [
-            "Pseudocomfy"
+            "pseudocomfy"
         ],
         "controlnet": [
             "control-lora-depth-rank128.safetensors"
