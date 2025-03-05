@@ -155,9 +155,9 @@
               0
             ]
           },
-          "class_type": "PreviewImage",
+          "class_type": "SaveImage",
           "_meta": {
-            "title": "Preview Image"
+            "title": "Save Image"
           }
         },
         "43": {
