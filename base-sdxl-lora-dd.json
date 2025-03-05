@@ -25,15 +25,15 @@
           "name": "Lora Model",
           "key": "__LORA_MODEL__",
           "type": "string",
-          "default": "BrushstrokesSDXL.safetensors",
+          "default": "DelicateWhimsy.safetensors",
           "options": [
-            "Alphonse Mucha Style.safetensors",
-            "BrushstrokesSDXL.safetensors",
-            "ColoringBookRedmond-ColoringBook-ColoringBookAF.safetensors",
-            "Delicate_Whimsy.safetensors",
-            "EldritchCharcoalXL1.1.safetensors",
-            "pixel-art-xl-v1.1.safetensors",
-            "sketch_it.safetensors"
+            "AlphonseMucha.safetensors",
+            "Brushstrokes.safetensors",
+            "ColoringBook.safetensors",
+            "DelicateWhimsy.safetensors",
+            "EldritchCharcoal.safetensors",
+            "PixelArt.safetensors",
+            "SketchIt.safetensors"
           ],
           "description": "human-readable description"
         },
@@ -58,13 +58,13 @@
         ],
         "ipadapter": [],
         "loras": [
-          "Alphonse Mucha Style.safetensors",
-          "BrushstrokesSDXL.safetensors",
-          "ColoringBookRedmond-ColoringBook-ColoringBookAF.safetensors",
-          "Delicate_Whimsy.safetensors",
-          "EldritchCharcoalXL1.1.safetensors",
-          "pixel-art-xl-v1.1.safetensors",
-          "sketch_it.safetensors"
+          "AlphonseMucha.safetensors",
+          "Brushstrokes.safetensors",
+          "ColoringBook.safetensors",
+          "DelicateWhimsy.safetensors",
+          "EldritchCharcoal.safetensors",
+          "PixelArt.safetensors",
+          "SketchIt.safetensors"
         ]
     },
     "prompt_requirements": {
