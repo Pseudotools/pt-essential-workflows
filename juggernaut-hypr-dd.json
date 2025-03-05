@@ -2,7 +2,7 @@
     "id": "juggernaut-hypr-dd.json",
     "type": "comfy",
     "name": "juggernaut-txt",
-    "description": "A fine tuning of SDXL Hyper by RunDiffusion with text-only 'dense diffusion' style regional prompting.",
+    "description": "SDXL Hyper by RunDiffusion, 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
         {

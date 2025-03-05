@@ -2,7 +2,7 @@
     "id": "albedobase-sdxl-dd",
     "type": "comfy",
     "name": "albedo-txt",
-    "description": "A fine tuning of SDXL 'Albedobase' by CivitAI user 'albedobond' with text-only 'dense diffusion' style regional prompting.",
+    "description": "SDXL 'Albedobase' model, 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
         {

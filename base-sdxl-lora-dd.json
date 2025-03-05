@@ -2,7 +2,7 @@
     "id": "base-sdxl-lora-dd",
     "type": "comfy",
     "name": "vanilla-lora-txt",
-    "description": "Standard SDXL with LoRA model and text-only 'dense diffusion' style regional prompting.",
+    "description": "Standard SDXL with LoRA, 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
         {
@@ -57,7 +57,7 @@
             "control-lora-depth-rank128.safetensors"
         ],
         "ipadapter": [],
-        "lora": [
+        "loras": [
           "Alphonse Mucha Style.safetensors",
           "BrushstrokesSDXL.safetensors",
           "ColoringBookRedmond-ColoringBook-ColoringBookAF.safetensors",

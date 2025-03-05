@@ -2,7 +2,7 @@
     "id": "albedobase-sdxl-ip",
     "type": "comfy",
     "name": "albedo-img",
-    "description": "A fine tuning of SDXL 'Albedobase' by CivitAI user 'albedobond' with text-and-image 'ipadapter' style regional prompting.",
+    "description": "SDXL 'Albedobase' model, 'ipadapter' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
         {
@@ -28,7 +28,7 @@
         ],
         "custom_nodes": [
             "pseudocomfy",
-            "ComfyUI_IPAdapter_plus"
+            "comfyui_ipadapter_plus"
         ],
         "controlnet": [
             "control-lora-depth-rank128.safetensors"
