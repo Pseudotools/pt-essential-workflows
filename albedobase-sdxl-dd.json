@@ -150,6 +150,7 @@
         },
         "42": {
           "inputs": {
+            "filename_prefix": "ComfyUI",
             "images": [
               "41",
               0
