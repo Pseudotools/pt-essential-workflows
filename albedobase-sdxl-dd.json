@@ -1,0 +1,265 @@
+{
+    "id": "albedobase-sdxl-dd",
+    "type": "comfy",
+    "name": "albedo-txt",
+    "description": "A fine tuning of SDXL 'Albedobase' by CivitAI user 'albedobond' with text-only 'dense diffusion' style regional prompting.",
+    "pseudorandom_workflow_scheme_version": 0.1,
+    "variables": [
+        {
+            "name": "Steps",
+            "key": "__STEPS__",
+            "type": "int",
+            "default": 15,
+            "range": [0,50],
+            "description": "[human-readable description]"
+        },
+        {
+            "name": "Controlnet Strength",
+            "key": "__CONTROLNET_STRENGTH__",
+            "type": "float",
+            "default": 0.9,
+            "range": [0.00,1.00],
+            "description": "human-readable description"
+        }        
+    ],
+    "endpoint_requirements" : {
+        "checkpoints": [
+            "albedobaseXL_v21.safetensors"
+        ],
+        "custom_nodes": [
+            "pseudocomfy"
+        ],
+        "controlnet": [
+            "control-lora-depth-rank128.safetensors"
+        ],
+        "ipadapter": []
+    },
+    "prompt_requirements": {
+            "image": false,
+            "text": true
+    },
+    "workflow": {
+        "1": {
+          "inputs": {
+            "ckpt_name": "albedobaseXL_v21.safetensors"
+          },
+          "class_type": "CheckpointLoaderSimple",
+          "_meta": {
+            "title": "Load Checkpoint"
+          }
+        },
+        "37": {
+          "inputs": {
+            "scale_img_by": 2,
+            "json_data": [
+              "45",
+              0
+            ]
+          },
+          "class_type": "ProcessJSON",
+          "_meta": {
+            "title": "Process JSON"
+          }
+        },
+        "38": {
+          "inputs": {
+            "pmt_scene": [
+              "37",
+              3
+            ],
+            "pmt_style": [
+              "37",
+              4
+            ],
+            "pmt_negative": [
+              "37",
+              5
+            ],
+            "width": [
+              "37",
+              6
+            ],
+            "height": [
+              "37",
+              7
+            ],
+            "model": [
+              "1",
+              0
+            ],
+            "clip": [
+              "1",
+              1
+            ],
+            "object_txts": [
+              "37",
+              0
+            ],
+            "masks": [
+              "37",
+              2
+            ]
+          },
+          "class_type": "Combiner",
+          "_meta": {
+            "title": "Combiner"
+          }
+        },
+        "39": {
+          "inputs": {
+            "strength": "__CONTROLNET_STRENGTH__",
+            "start_percent": 0,
+            "end_percent": 0.8,
+            "positive": [
+              "38",
+              1
+            ],
+            "negative": [
+              "38",
+              2
+            ],
+            "control_net": [
+              "46",
+              0
+            ],
+            "image": [
+              "37",
+              8
+            ]
+          },
+          "class_type": "ControlNetApplyAdvanced",
+          "_meta": {
+            "title": "Apply ControlNet (Advanced)"
+          }
+        },
+        "41": {
+          "inputs": {
+            "samples": [
+              "47",
+              0
+            ],
+            "vae": [
+              "1",
+              2
+            ]
+          },
+          "class_type": "VAEDecode",
+          "_meta": {
+            "title": "VAE Decode"
+          }
+        },
+        "42": {
+          "inputs": {
+            "images": [
+              "41",
+              0
+            ]
+          },
+          "class_type": "PreviewImage",
+          "_meta": {
+            "title": "Preview Image"
+          }
+        },
+        "43": {
+          "inputs": {
+            "width": [
+              "37",
+              6
+            ],
+            "height": [
+              "37",
+              7
+            ],
+            "batch_size": 1
+          },
+          "class_type": "EmptyLatentImage",
+          "_meta": {
+            "title": "Empty Latent Image"
+          }
+        },
+        "44": {
+          "inputs": {
+            "images": [
+              "37",
+              8
+            ]
+          },
+          "class_type": "PreviewImage",
+          "_meta": {
+            "title": "Preview Image"
+          }
+        },
+        "45": {
+          "inputs": {
+            "string_path": "__PSEUDORANDOM_TEMP_PATH__"
+          },
+          "class_type": "LoadJSONFromFolder",
+          "_meta": {
+            "title": "Load JSON (From Folder)"
+          }
+        },
+        "46": {
+          "inputs": {
+            "control_net_name": "control-lora-depth-rank128.safetensors"
+          },
+          "class_type": "ControlNetLoader",
+          "_meta": {
+            "title": "Load ControlNet Model"
+          }
+        },
+        "47": {
+          "inputs": {
+            "seed": "__PSEUDORANDOM_SEED__",
+            "steps": "__STEPS__",
+            "cfg": 3.5,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1,
+            "model": [
+              "38",
+              0
+            ],
+            "positive": [
+              "39",
+              0
+            ],
+            "negative": [
+              "39",
+              1
+            ],
+            "latent_image": [
+              "43",
+              0
+            ]
+          },
+          "class_type": "KSampler",
+          "_meta": {
+            "title": "KSampler"
+          }
+        },
+        "48": {
+          "inputs": {
+            "masks": [
+              "37",
+              2
+            ]
+          },
+          "class_type": "MakeMaskBatch",
+          "_meta": {
+            "title": "Create Mask Batch"
+          }
+        },
+        "49": {
+          "inputs": {
+            "images": [
+              "48",
+              0
+            ]
+          },
+          "class_type": "PreviewImage",
+          "_meta": {
+            "title": "Preview Image"
+          }
+        }
+      }
+}

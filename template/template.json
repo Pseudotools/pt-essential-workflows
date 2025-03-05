@@ -1,0 +1,39 @@
+{
+    "id": "[unique_id_same_as_filename]",
+    "type": "comfy",
+    "name": "[human_readable_name_for_display]",
+    "description": "[workflow description]",
+    "pseudorandom_workflow_scheme_version": 0.1,
+    "variables": [
+        {
+            "name": "Steps",
+            "key": "__STEPS__",
+            "type": "int",
+            "default": 15,
+            "range": [0,50],
+            "description": "[human-readable description]"
+        }
+    ],
+    "endpoint_requirements" : {
+        "checkpoints": [
+            "[modelname].safetensors"
+        ],
+        "custom_nodes": [
+            "pseudocomfy"
+        ],
+        "controlnet": [
+            "control-lora-depth-rank128.safetensors"
+        ],
+        "ipadapter": []
+    },
+    "prompt_requirements": {
+            "image": false,
+            "text": true
+    },
+    "workflow": {
+
+
+
+      
+    }
+}
