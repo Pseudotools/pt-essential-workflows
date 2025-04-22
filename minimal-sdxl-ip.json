@@ -1,0 +1,257 @@
+{
+    "id": "minimal-sdxl-ip",
+    "type": "comfy",
+    "name": "minimal",
+    "description": "SDXL base model, 'ipadapter' style regional prompting.",
+    "pseudorandom_workflow_scheme_version": 0.1,
+    "variables": [
+        {
+            "name": "Steps",
+            "key": "__STEPS__",
+            "type": "int",
+            "default": 15,
+            "range": [0,50],
+            "description": "[human-readable description]"
+        },
+        {
+            "name": "Controlnet Strength",
+            "key": "__CONTROLNET_STRENGTH__",
+            "type": "float",
+            "default": 0.9,
+            "range": [0.00,1.00],
+            "description": "human-readable description"
+        }        
+    ],
+    "endpoint_requirements" : {
+        "checkpoints": [
+            "sd_xl_base_1.0.safetensors"
+        ],
+        "custom_nodes": [
+            "pseudocomfy",
+            "comfyui_ipadapter_plus"
+        ],
+        "controlnet": [
+            "control-lora-depth-rank128.safetensors"
+        ],
+        "ipadapter": [
+            "ip-adapter-plus_sdxl_vit-h.safetensors"
+        ]
+    },
+    "prompt_requirements": {
+            "image": true,
+            "text": true
+    },
+    "workflow": {
+      "1": {
+        "inputs": {
+          "ckpt_name": "sd_xl_base_1.0.safetensors"
+        },
+        "class_type": "CheckpointLoaderSimple",
+        "_meta": {
+          "title": "Load Checkpoint"
+        }
+      },
+      "7": {
+        "inputs": {
+          "seed": "__PSEUDORANDOM_SEED__",
+          "steps": "__STEPS__",
+          "cfg": 3.5,
+          "sampler_name": "euler",
+          "scheduler": "normal",
+          "denoise": 1,
+          "model": [
+            "37",
+            0
+          ],
+          "positive": [
+            "15",
+            0
+          ],
+          "negative": [
+            "15",
+            1
+          ],
+          "latent_image": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "8": {
+        "inputs": {
+          "width": [
+            "33",
+            6
+          ],
+          "height": [
+            "33",
+            7
+          ],
+          "batch_size": 1
+        },
+        "class_type": "EmptyLatentImage",
+        "_meta": {
+          "title": "Empty Latent Image"
+        }
+      },
+      "10": {
+        "inputs": {
+          "samples": [
+            "7",
+            0
+          ],
+          "vae": [
+            "1",
+            2
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAE Decode"
+        }
+      },
+      "12": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "10",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "Save Image"
+        }
+      },
+      "15": {
+        "inputs": {
+          "strength": "__CONTROLNET_STRENGTH__",
+          "start_percent": 0,
+          "end_percent": 0.8,
+          "positive": [
+            "37",
+            1
+          ],
+          "negative": [
+            "37",
+            2
+          ],
+          "control_net": [
+            "16",
+            0
+          ],
+          "image": [
+            "33",
+            8
+          ]
+        },
+        "class_type": "ControlNetApplyAdvanced",
+        "_meta": {
+          "title": "Apply ControlNet (Advanced)"
+        }
+      },
+      "16": {
+        "inputs": {
+          "control_net_name": "control-lora-depth-rank128.safetensors"
+        },
+        "class_type": "ControlNetLoader",
+        "_meta": {
+          "title": "Load ControlNet Model"
+        }
+      },
+      "33": {
+        "inputs": {
+          "scale_img_by": 2,
+          "json_data": [
+            "36",
+            0
+          ]
+        },
+        "class_type": "ProcessJSON",
+        "_meta": {
+          "title": "Process JSON"
+        }
+      },
+      "36": {
+        "inputs": {
+          "string_path": "__PSEUDORANDOM_TEMP_PATH__"
+        },
+        "class_type": "LoadJSONFromFolder",
+        "_meta": {
+          "title": "Load JSON (From Folder)"
+        }
+      },
+      "37": {
+        "inputs": {
+          "pmt_scene": [
+            "33",
+            3
+          ],
+          "pmt_style": [
+            "33",
+            4
+          ],
+          "pmt_negative": [
+            "33",
+            5
+          ],
+          "width": [
+            "33",
+            6
+          ],
+          "height": [
+            "33",
+            7
+          ],
+          "base_cond_strength": 0.3,
+          "object_cond_strength": 1,
+          "ipadapter_weight": 0.8,
+          "clip": [
+            "1",
+            1
+          ],
+          "object_txts": [
+            "33",
+            0
+          ],
+          "masks": [
+            "33",
+            2
+          ],
+          "object_imgs": [
+            "33",
+            1
+          ],
+          "model": [
+            "39",
+            0
+          ],
+          "ipadapter": [
+            "39",
+            1
+          ]
+        },
+        "class_type": "MixedBuiltinCombinerIPAdaper",
+        "_meta": {
+          "title": "Mixed Builtin Combiner (with IPAdaper)"
+        }
+      },
+      "39": {
+        "inputs": {
+          "preset": "PLUS (high strength)",
+          "model": [
+            "1",
+            0
+          ]
+        },
+        "class_type": "IPAdapterUnifiedLoader",
+        "_meta": {
+          "title": "IPAdapter Unified Loader"
+        }
+      }
+    }
+}
