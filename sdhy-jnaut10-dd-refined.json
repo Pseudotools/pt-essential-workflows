@@ -1,4 +1,5 @@
-"id": "juggernaut-hypr-dd.json",
+{
+    "id": "juggernaut-hypr-dd.json",
 "type": "comfy",
 "name": "juggernaut-txt",
 "description": "SDXL Hyper by RunDiffusion, 'dense diffusion' style regional prompting.",
