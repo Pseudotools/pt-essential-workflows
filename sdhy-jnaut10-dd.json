@@ -180,7 +180,7 @@
         },
         "45": {
           "inputs": {
-            "string_path": "C:\\Users\\ksteinfe\\Documents\\Pseudorandom\\_model_snapshots"
+            "string_path": "__PSEUDORANDOM_TEMP_PATH__"
           },
           "class_type": "LoadJSONFromFolder",
           "_meta": {
