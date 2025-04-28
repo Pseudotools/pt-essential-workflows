@@ -32,7 +32,8 @@
 ],
 "endpoint_requirements" : {
     "checkpoints": [
-        "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+        "Juggernaut_X_RunDiffusion_Hyper.safetensors",        
+        "sd_xl_refiner_1.0.safetensors"
     ],
     "custom_nodes": [
         "pseudocomfy"
