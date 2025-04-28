@@ -1,8 +1,8 @@
 
 {
-    "id": "sdhy-jnaut10-txt.json",
+    "id": "sdhy-jnaut10-dd.json",
     "type": "comfy",
-    "name": "juggernaut-txt",
+    "name": "hyper-coarse-txt",
     "description": "SDXL Hyper by RunDiffusion, 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
