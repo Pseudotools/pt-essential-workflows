@@ -36,7 +36,7 @@
             "ip-adapter-plus_sdxl_vit-h.safetensors"
         ],
         "clip_vision": [
-            "CLIP-ViT-H-14-laion2B-s32B-b79K"
+            "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
         ]
     },
     "prompt_requirements": {
