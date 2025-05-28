@@ -1,15 +1,15 @@
 {
-    "id": "sdhy-jnaut10-dd-refined",
+    "id": "sdlt-realviz50-dd-refined",
     "type": "comfy",
-    "name": "Henriette",
-    "description": "SD Hyper model with two-phase refinement architecture and 'dense diffusion' style regional prompting.",
+    "name": "Lisette",
+    "description": "SD Lightning model with two-phase refinement architecture and 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
         {
             "name": "Iteration",
             "key": "__ITERATION__",
             "type": "float",
-            "default": 0.75,
+            "default": 0.5,
             "range": [0.0,1.0],
             "description": "How many 'steps' to take to produce the render - more steps take more time, but results in a more refined render."
         },      
@@ -32,7 +32,7 @@
     ],
     "endpoint_requirements" : {
         "checkpoints": [
-            "Juggernaut_X_RunDiffusion_Hyper.safetensors",
+            "realvisxlV50_v50LightningBakedvae.safetensors",
             "sd_xl_refiner_1.0.safetensors"
         ],
         "custom_nodes": [
@@ -47,14 +47,9 @@
             "text": true
     },
     "workflow": {
-
-
-
-
-
   "1": {
     "inputs": {
-      "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+      "ckpt_name": "realvisxlV50_v50LightningBakedvae.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -64,20 +59,20 @@
   "39": {
     "inputs": {
       "strength": [
-        "159",
+        "167",
         0
       ],
       "start_percent": 0,
       "end_percent": [
-        "160",
+        "161",
         0
       ],
       "positive": [
-        "143",
+        "153",
         1
       ],
       "negative": [
-        "143",
+        "153",
         2
       ],
       "control_net": [
@@ -85,7 +80,7 @@
         0
       ],
       "image": [
-        "164",
+        "155",
         2
       ]
     },
@@ -97,11 +92,11 @@
   "43": {
     "inputs": {
       "width": [
-        "164",
+        "155",
         0
       ],
       "height": [
-        "164",
+        "155",
         1
       ],
       "batch_size": 1
@@ -134,20 +129,20 @@
       "add_noise": "enable",
       "noise_seed": "__PSEUDORANDOM_SEED__",
       "steps": [
-        "153",
+        "163",
         0
       ],
-      "cfg": 1.3,
+      "cfg": 1.5,
       "sampler_name": "dpmpp_sde",
       "scheduler": "karras",
       "start_at_step": 0,
       "end_at_step": [
-        "151",
+        "164",
         0
       ],
       "return_with_leftover_noise": "enable",
       "model": [
-        "143",
+        "153",
         0
       ],
       "positive": [
@@ -201,28 +196,28 @@
       "add_noise": "disable",
       "noise_seed": "__PSEUDORANDOM_SEED__",
       "steps": [
-        "153",
+        "163",
         0
       ],
       "cfg": 5,
       "sampler_name": "dpmpp_sde",
       "scheduler": "karras",
       "start_at_step": [
-        "151",
+        "164",
         0
       ],
       "end_at_step": 10000,
       "return_with_leftover_noise": "disable",
       "model": [
-        "142",
+        "152",
         0
       ],
       "positive": [
-        "142",
+        "152",
         1
       ],
       "negative": [
-        "142",
+        "152",
         2
       ],
       "latent_image": [
@@ -276,39 +271,7 @@
       "title": "Save Image"
     }
   },
-  "136": {
-    "inputs": {
-      "env_scene": [
-        "137",
-        3
-      ],
-      "env_style": [
-        "137",
-        4
-      ],
-      "env_negative": [
-        "137",
-        5
-      ]
-    },
-    "class_type": "PseudoProcessEnvironmentalPrompts",
-    "_meta": {
-      "title": "Process Environmental Prompt Guidence"
-    }
-  },
-  "137": {
-    "inputs": {
-      "json_data": [
-        "138",
-        0
-      ]
-    },
-    "class_type": "PseudoUnpackModelSnapshot",
-    "_meta": {
-      "title": "Unpack Model Snapshot"
-    }
-  },
-  "138": {
+  "144": {
     "inputs": {
       "string_path": "__PSEUDORANDOM_TEMP_PATH__"
     },
@@ -317,17 +280,29 @@
       "title": "Load Model Snapshot"
     }
   },
-  "139": {
+  "145": {
+    "inputs": {
+      "json_data": [
+        "144",
+        0
+      ]
+    },
+    "class_type": "PseudoUnpackModelSnapshot",
+    "_meta": {
+      "title": "Unpack Model Snapshot"
+    }
+  },
+  "146": {
     "inputs": {
       "operation": "dilate (grow white areas)",
       "kernel_size": 3,
       "iterations": [
-        "147",
+        "156",
         0
       ],
       "invert": false,
       "msk": [
-        "137",
+        "145",
         2
       ]
     },
@@ -336,16 +311,16 @@
       "title": "Reshape Mask"
     }
   },
-  "140": {
+  "147": {
     "inputs": {
       "blur_radius": 25,
       "sigma": [
-        "157",
+        "158",
         0
       ],
       "invert": false,
       "msk": [
-        "139",
+        "146",
         0
       ]
     },
@@ -354,25 +329,131 @@
       "title": "Blur Mask"
     }
   },
-  "141": {
+  "151": {
+    "inputs": {
+      "Scene": "objects on a matte white surface against an empty, neutral white background.",
+      "Style": "hyperdetailed photography, product photography, professional photography, canon 5d mark iiji photo, 4k Unity, 8k, Zbrush, super-detailed, beautifully lit, octane rendering",
+      "Negative": "",
+      "env_scene": [
+        "145",
+        3
+      ],
+      "env_style": [
+        "145",
+        4
+      ],
+      "env_negative": [
+        "145",
+        5
+      ]
+    },
+    "class_type": "PseudoProcessEnvironmentalPrompts",
+    "_meta": {
+      "title": "Process Environmental Prompt Guidence"
+    }
+  },
+  "152": {
+    "inputs": {
+      "model": [
+        "124",
+        0
+      ],
+      "clip": [
+        "124",
+        1
+      ],
+      "mat_txts_lst": [
+        "154",
+        0
+      ],
+      "mat_msks_lst": [
+        "154",
+        2
+      ],
+      "env_scene": [
+        "151",
+        0
+      ],
+      "env_style": [
+        "151",
+        1
+      ],
+      "env_negative": [
+        "151",
+        2
+      ],
+      "width": [
+        "155",
+        0
+      ],
+      "height": [
+        "155",
+        1
+      ]
+    },
+    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "_meta": {
+      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+    }
+  },
+  "153": {
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ],
+      "mat_txts_lst": [
+        "154",
+        0
+      ],
+      "mat_msks_lst": [
+        "154",
+        2
+      ],
+      "env_scene": [
+        "151",
+        0
+      ],
+      "env_style": [
+        "151",
+        1
+      ],
+      "env_negative": [
+        "151",
+        2
+      ],
+      "width": [
+        "155",
+        0
+      ],
+      "height": [
+        "155",
+        1
+      ]
+    },
+    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "_meta": {
+      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+    }
+  },
+  "154": {
     "inputs": {
       "scale_msk_to": "1024",
-      "Filler1": "",
-      "Filler2": "",
-      "Filler3": "",
-      "Filler4": "",
-      "Filler5": "",
-      "Filler6": "",
+      "Material Mask": "",
       "mat_txts_lst": [
-        "137",
+        "145",
         0
       ],
       "mat_imgs_lst": [
-        "137",
+        "145",
         1
       ],
       "mat_msks_lst": [
-        "140",
+        "147",
         0
       ]
     },
@@ -381,108 +462,25 @@
       "title": "Process Material Prompt Guidence"
     }
   },
-  "142": {
+  "155": {
     "inputs": {
-      "model": [
-        "124",
-        0
-      ],
-      "clip": [
-        "124",
-        1
-      ],
-      "mat_txts_lst": [
-        "141",
-        0
-      ],
-      "mat_msks_lst": [
-        "141",
-        2
-      ],
-      "env_scene": [
-        "136",
-        0
-      ],
-      "env_style": [
-        "136",
-        1
-      ],
-      "env_negative": [
-        "136",
-        2
-      ],
-      "width": [
-        "164",
-        0
-      ],
-      "height": [
-        "164",
-        1
+      "scale_img_to": "1024",
+      "Process Image Prompt": "",
+      "img": [
+        "145",
+        6
       ]
     },
-    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "class_type": "PseudoProcessImagePrompt",
     "_meta": {
-      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+      "title": "Process Image Prompt"
     }
   },
-  "143": {
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "mat_txts_lst": [
-        "141",
-        0
-      ],
-      "mat_msks_lst": [
-        "141",
-        2
-      ],
-      "env_scene": [
-        "136",
-        0
-      ],
-      "env_style": [
-        "136",
-        1
-      ],
-      "env_negative": [
-        "136",
-        2
-      ],
-      "width": [
-        "164",
-        0
-      ],
-      "height": [
-        "164",
-        1
-      ]
-    },
-    "class_type": "PseudoApplyDenseDiffusionSDXL",
-    "_meta": {
-      "title": "Apply Dense Diffusion Conditioning (SDXL)"
-    }
-  },
-  "145": {
-    "inputs": {
-      "value": "__MASK_SOFTNESS__"
-    },
-    "class_type": "PrimitiveFloat",
-    "_meta": {
-      "title": "MASK_SOFTNESS"
-    }
-  },
-  "147": {
+  "156": {
     "inputs": {
       "rounding": "round",
       "val": [
-        "158",
+        "157",
         0
       ]
     },
@@ -491,16 +489,81 @@
       "title": "Float to Int"
     }
   },
-  "148": {
+  "157": {
     "inputs": {
-      "value": "__ITERATION__"
+      "tgt_min": 1,
+      "tgt_max": 8,
+      "val": [
+        "159",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "158": {
+    "inputs": {
+      "tgt_min": 1,
+      "tgt_max": 10,
+      "val": [
+        "159",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "159": {
+    "inputs": {
+      "value": "__MASK_SOFTNESS__"
     },
     "class_type": "PrimitiveFloat",
     "_meta": {
-      "title": "ITERATION"
+      "title": "MASK_SOFTNESS"
     }
   },
-  "151": {
+  "160": {
+    "inputs": {
+      "value": "__ADHERENCE__"
+    },
+    "class_type": "PrimitiveFloat",
+    "_meta": {
+      "title": "ADHERENCE"
+    }
+  },
+  "161": {
+    "inputs": {
+      "tgt_min": 0.1,
+      "tgt_max": 0.9,
+      "val": [
+        "160",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "162": {
+    "inputs": {
+      "tgt_min": 6,
+      "tgt_max": 8,
+      "val": [
+        "166",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "163": {
     "inputs": {
       "rounding": "round",
       "val": [
@@ -513,11 +576,11 @@
       "title": "Float to Int"
     }
   },
-  "153": {
+  "164": {
     "inputs": {
       "rounding": "round",
       "val": [
-        "161",
+        "165",
         0
       ]
     },
@@ -526,91 +589,12 @@
       "title": "Float to Int"
     }
   },
-  "155": {
-    "inputs": {
-      "value": "__ADHERENCE__"
-    },
-    "class_type": "PrimitiveFloat",
-    "_meta": {
-      "title": "ADHERENCE"
-    }
-  },
-  "157": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 10,
-      "val": [
-        "145",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "158": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 8,
-      "val": [
-        "145",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "159": {
-    "inputs": {
-      "tgt_min": 0.30000000000000004,
-      "tgt_max": 1,
-      "val": [
-        "155",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "160": {
-    "inputs": {
-      "tgt_min": 0.1,
-      "tgt_max": 0.9,
-      "val": [
-        "155",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "161": {
-    "inputs": {
-      "tgt_min": 8,
-      "tgt_max": 12,
-      "val": [
-        "148",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "162": {
+  "165": {
     "inputs": {
       "tgt_min": 4,
       "tgt_max": 6,
       "val": [
-        "148",
+        "166",
         0
       ]
     },
@@ -619,23 +603,29 @@
       "title": "Remap Float"
     }
   },
-  "164": {
+  "166": {
     "inputs": {
-      "scale_img_to": "1024",
-      "Filler1": "",
-      "Filler2": "",
-      "img": [
-        "137",
-        6
+      "value": "__ITERATION__"
+    },
+    "class_type": "PrimitiveFloat",
+    "_meta": {
+      "title": "ITERATION"
+    }
+  },
+  "167": {
+    "inputs": {
+      "tgt_min": 0.30000000000000004,
+      "tgt_max": 1,
+      "val": [
+        "160",
+        0
       ]
     },
-    "class_type": "PseudoProcessImagePrompt",
+    "class_type": "PseudoRemapNormalizedFloat",
     "_meta": {
-      "title": "Process Image Prompt"
+      "title": "Remap Float"
     }
   }
+}
 
-
-
-    }
 }

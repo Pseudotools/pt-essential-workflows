@@ -1,0 +1,403 @@
+{
+    "id": "sdhy-jnaut10-dd-refined.json",
+    "type": "comfy",
+    "name": "hyper-refined-txt",
+    "description": "SDXL Hyper by RunDiffusion, 'dense diffusion' style regional prompting.",
+    "pseudorandom_workflow_scheme_version": 0.1,
+    "variables": [
+    {
+        "name": "Initial Steps",
+        "key": "__INIT_STEPS__",
+        "type": "int",
+        "default": 6,
+        "range": [4,8],
+        "description": "[human-readable description]"
+    },    
+    {
+        "name": "Total Steps",
+        "key": "__TOTAL_STEPS__",
+        "type": "int",
+        "default": 12,
+        "range": [9,16],
+        "description": "[human-readable description]"
+    },
+    {
+        "name": "Controlnet Strength",
+        "key": "__CONTROLNET_STRENGTH__",
+        "type": "float",
+        "default": 0.9,
+        "range": [0.00,1.00],
+        "description": "human-readable description"
+    }        
+],
+"endpoint_requirements" : {
+    "checkpoints": [
+        "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+    ],
+    "custom_nodes": [
+        "pseudocomfy"
+    ],
+    "controlnet": [
+        "control-lora-depth-rank128.safetensors"
+    ],
+    "ipadapter": []
+},
+"prompt_requirements": {
+        "image": false,
+        "text": true
+},
+"workflow": {
+    "4": {
+      "inputs": {
+        "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+      },
+      "class_type": "CheckpointLoaderSimple",
+      "_meta": {
+        "title": "Load Checkpoint - BASE"
+      }
+    },
+    "10": {
+      "inputs": {
+        "add_noise": "enable",
+        "noise_seed": "__PSEUDORANDOM_SEED__",
+        "steps": "__TOTAL_STEPS__",
+        "cfg": 1.3,
+        "sampler_name": "dpmpp_sde",
+        "scheduler": "karras",
+        "start_at_step": 0,
+        "end_at_step": "__INIT_STEPS__",
+        "return_with_leftover_noise": "enable",
+        "model": [
+          "53",
+          0
+        ],
+        "positive": [
+          "52",
+          0
+        ],
+        "negative": [
+          "52",
+          1
+        ],
+        "latent_image": [
+          "56",
+          0
+        ]
+      },
+      "class_type": "KSamplerAdvanced",
+      "_meta": {
+        "title": "KSampler (Advanced) - BASE"
+      }
+    },
+    "11": {
+      "inputs": {
+        "add_noise": "disable",
+        "noise_seed": 0,
+        "steps": "__TOTAL_STEPS__",
+        "cfg": 5,
+        "sampler_name": "dpmpp_sde",
+        "scheduler": "karras",
+        "start_at_step": "__INIT_STEPS__",
+        "end_at_step": 10000,
+        "return_with_leftover_noise": "disable",
+        "model": [
+          "62",
+          0
+        ],
+        "positive": [
+          "62",
+          1
+        ],
+        "negative": [
+          "62",
+          2
+        ],
+        "latent_image": [
+          "10",
+          0
+        ]
+      },
+      "class_type": "KSamplerAdvanced",
+      "_meta": {
+        "title": "KSampler (Advanced) - REFINER"
+      }
+    },
+    "12": {
+      "inputs": {
+        "ckpt_name": "sd_xl_refiner_1.0.safetensors"
+      },
+      "class_type": "CheckpointLoaderSimple",
+      "_meta": {
+        "title": "Load Checkpoint - REFINER"
+      }
+    },
+    "17": {
+      "inputs": {
+        "samples": [
+          "11",
+          0
+        ],
+        "vae": [
+          "12",
+          2
+        ]
+      },
+      "class_type": "VAEDecode",
+      "_meta": {
+        "title": "VAE Decode"
+      }
+    },
+    "19": {
+      "inputs": {
+        "filename_prefix": "ComfyUI",
+        "images": [
+          "17",
+          0
+        ]
+      },
+      "class_type": "SaveImage",
+      "_meta": {
+        "title": "Save Image"
+      }
+    },
+    "52": {
+      "inputs": {
+        "strength": 0.9000000000000001,
+        "start_percent": 0,
+        "end_percent": 0.8000000000000002,
+        "positive": [
+          "53",
+          1
+        ],
+        "negative": [
+          "53",
+          2
+        ],
+        "control_net": [
+          "59",
+          0
+        ],
+        "image": [
+          "57",
+          8
+        ]
+      },
+      "class_type": "ControlNetApplyAdvanced",
+      "_meta": {
+        "title": "Apply ControlNet (Advanced)"
+      }
+    },
+    "53": {
+      "inputs": {
+        "model": [
+          "4",
+          0
+        ],
+        "clip": [
+          "4",
+          1
+        ],
+        "object_txts": [
+          "57",
+          0
+        ],
+        "masks": [
+          "57",
+          2
+        ],
+        "pmt_scene": [
+          "57",
+          3
+        ],
+        "pmt_style": [
+          "57",
+          4
+        ],
+        "pmt_negative": [
+          "57",
+          5
+        ],
+        "width": [
+          "57",
+          6
+        ],
+        "height": [
+          "57",
+          7
+        ]
+      },
+      "class_type": "Combiner",
+      "_meta": {
+        "title": "Combiner"
+      }
+    },
+    "54": {
+      "inputs": {
+        "images": [
+          "55",
+          0
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "55": {
+      "inputs": {
+        "masks": [
+          "57",
+          2
+        ]
+      },
+      "class_type": "MakeMaskBatch",
+      "_meta": {
+        "title": "Create Mask Batch"
+      }
+    },
+    "56": {
+      "inputs": {
+        "width": [
+          "57",
+          6
+        ],
+        "height": [
+          "57",
+          7
+        ],
+        "batch_size": 1
+      },
+      "class_type": "EmptyLatentImage",
+      "_meta": {
+        "title": "Empty Latent Image"
+      }
+    },
+    "57": {
+      "inputs": {
+        "scale_img_by": 2,
+        "json_data": [
+          "58",
+          0
+        ]
+      },
+      "class_type": "ProcessJSON",
+      "_meta": {
+        "title": "Process JSON"
+      }
+    },
+    "58": {
+      "inputs": {
+        "string_path": "__PSEUDORANDOM_TEMP_PATH__"
+      },
+      "class_type": "LoadJSONFromFolder",
+      "_meta": {
+        "title": "Load JSON (From Folder)"
+      }
+    },
+    "59": {
+      "inputs": {
+        "control_net_name": "control-lora-depth-rank128.safetensors"
+      },
+      "class_type": "ControlNetLoader",
+      "_meta": {
+        "title": "Load ControlNet Model"
+      }
+    },
+    "61": {
+      "inputs": {
+        "images": [
+          "57",
+          8
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "62": {
+      "inputs": {
+        "model": [
+          "12",
+          0
+        ],
+        "clip": [
+          "12",
+          1
+        ],
+        "object_txts": [
+          "57",
+          0
+        ],
+        "masks": [
+          "57",
+          2
+        ],
+        "pmt_scene": [
+          "57",
+          3
+        ],
+        "pmt_style": [
+          "57",
+          4
+        ],
+        "pmt_negative": [
+          "57",
+          5
+        ],
+        "width": [
+          "57",
+          6
+        ],
+        "height": [
+          "57",
+          7
+        ]
+      },
+      "class_type": "Combiner",
+      "_meta": {
+        "title": "Combiner"
+      }
+    },
+    "63": {
+      "inputs": {
+        "samples": [
+          "10",
+          0
+        ],
+        "vae": [
+          "4",
+          2
+        ]
+      },
+      "class_type": "VAEDecode",
+      "_meta": {
+        "title": "VAE Decode"
+      }
+    },
+    "64": {
+      "inputs": {
+        "images": [
+          "63",
+          0
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "78": {
+      "inputs": {
+        "images": [
+          "17",
+          0
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    }
+  }
+}

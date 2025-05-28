@@ -1,8 +1,8 @@
 {
-    "id": "sdhy-jnaut10-dd",
+    "id": "sdlt-realviz50-ip",
     "type": "comfy",
-    "name": "Hugo",
-    "description": "Basic SD Hyper model and 'dense diffusion' style regional prompting.",
+    "name": "Lumen",
+    "description": "Basic SD Hyper model and 'ip-adpater' style regional prompting that handles image prompts.",
     "pseudorandom_workflow_scheme_version": 0.1,
     "variables": [
         {
@@ -24,17 +24,23 @@
     ],
     "endpoint_requirements" : {
         "checkpoints": [
-            "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+            "realvisxlV50_v50LightningBakedvae.safetensors"
         ],
         "custom_nodes": [
             "pseudocomfy"
         ],
         "controlnet": [
             "control-lora-depth-rank128.safetensors"
+        ],
+        "ipadapter": [
+            "ip-adapter-plus_sdxl_vit-h.safetensors"
+        ],
+        "clip_vision": [
+            "CLIP-ViT-H-14-laion2B-s32B-b79K"
         ]
     },
     "prompt_requirements": {
-            "image": false,
+            "image": true,
             "text": true
     },
     "workflow": {
@@ -44,9 +50,10 @@
 
 
 
+
   "1": {
     "inputs": {
-      "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+      "ckpt_name": "realvisxlV50_v50LightningBakedvae.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -65,11 +72,11 @@
         0
       ],
       "positive": [
-        "139",
+        "151",
         1
       ],
       "negative": [
-        "139",
+        "151",
         2
       ],
       "control_net": [
@@ -77,7 +84,7 @@
         0
       ],
       "image": [
-        "150",
+        "153",
         2
       ]
     },
@@ -105,11 +112,11 @@
   "43": {
     "inputs": {
       "width": [
-        "150",
+        "153",
         0
       ],
       "height": [
-        "150",
+        "153",
         1
       ],
       "batch_size": 1
@@ -131,13 +138,13 @@
   "47": {
     "inputs": {
       "seed": "__PSEUDORANDOM_SEED__",
-      "steps": 6,
-      "cfg": 1.3,
+      "steps": 4,
+      "cfg": 1.8,
       "sampler_name": "dpmpp_sde",
       "scheduler": "karras",
       "denoise": 1,
       "model": [
-        "139",
+        "151",
         0
       ],
       "positive": [
@@ -237,50 +244,6 @@
     "class_type": "PseudoProcessEnvironmentalPrompts",
     "_meta": {
       "title": "Process Environmental Prompt Guidence"
-    }
-  },
-  "139": {
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "mat_txts_lst": [
-        "137",
-        0
-      ],
-      "mat_msks_lst": [
-        "137",
-        2
-      ],
-      "env_scene": [
-        "138",
-        0
-      ],
-      "env_style": [
-        "138",
-        1
-      ],
-      "env_negative": [
-        "138",
-        2
-      ],
-      "width": [
-        "150",
-        0
-      ],
-      "height": [
-        "150",
-        1
-      ]
-    },
-    "class_type": "PseudoApplyDenseDiffusionSDXL",
-    "_meta": {
-      "title": "Apply Dense Diffusion Conditioning (SDXL)"
     }
   },
   "141": {
@@ -407,7 +370,77 @@
       "title": "Remap Float"
     }
   },
-  "150": {
+  "151": {
+    "inputs": {
+      "env_cond_strength": 0.30000000000000004,
+      "mat_cond_strength": 1,
+      "ipadapter_weight": 1.0000000000000002,
+      "start_at": 0,
+      "end_at": 1,
+      "model": [
+        "152",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ],
+      "ipadapter": [
+        "152",
+        1
+      ],
+      "mat_txts_lst": [
+        "137",
+        0
+      ],
+      "mat_imgs_lst": [
+        "137",
+        1
+      ],
+      "mat_msks_lst": [
+        "137",
+        2
+      ],
+      "env_scene": [
+        "138",
+        0
+      ],
+      "env_style": [
+        "138",
+        1
+      ],
+      "env_negative": [
+        "138",
+        2
+      ],
+      "width": [
+        "153",
+        0
+      ],
+      "height": [
+        "153",
+        1
+      ]
+    },
+    "class_type": "PseudoApplyIPAdaperSDXL",
+    "_meta": {
+      "title": "Apply IPAdaper Conditioning (SDXL)"
+    }
+  },
+  "152": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "PseudoIPAdapterUnifiedLoaderClone",
+    "_meta": {
+      "title": "IPAdapter Unified Loader (Clone)"
+    }
+  },
+  "153": {
     "inputs": {
       "scale_img_to": "1024",
       "Filler1": "",
@@ -425,6 +458,7 @@
 
 
 
+  
 
     }
 }
