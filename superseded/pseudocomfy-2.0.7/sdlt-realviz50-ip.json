@@ -4,7 +4,6 @@
     "name": "Lumen",
     "description": "Basic SD Hyper model and 'ip-adpater' style regional prompting that handles image prompts.",
     "pseudorandom_workflow_scheme_version": 0.1,
-    "pseudocomfy_version": "2.0.9",
     "variables": [
         {
             "name": "Adherence",
@@ -45,6 +44,13 @@
             "text": true
     },
     "workflow": {
+
+
+
+
+
+
+
   "1": {
     "inputs": {
       "ckpt_name": "realvisxlV50_v50LightningBakedvae.safetensors"
@@ -78,7 +84,7 @@
         0
       ],
       "image": [
-        "156",
+        "153",
         2
       ]
     },
@@ -106,11 +112,11 @@
   "43": {
     "inputs": {
       "width": [
-        "156",
+        "153",
         0
       ],
       "height": [
-        "156",
+        "153",
         1
       ],
       "batch_size": 1
@@ -196,7 +202,12 @@
   "137": {
     "inputs": {
       "scale_msk_to": "1024",
-      "Material Mask": "",
+      "Filler1": "",
+      "Filler2": "",
+      "Filler3": "",
+      "Filler4": "",
+      "Filler5": "",
+      "Filler6": "",
       "mat_txts_lst": [
         "134",
         0
@@ -206,7 +217,7 @@
         1
       ],
       "mat_msks_lst": [
-        "155",
+        "141",
         0
       ]
     },
@@ -217,9 +228,6 @@
   },
   "138": {
     "inputs": {
-      "Scene": "objects on a matte white surface against an empty, neutral white background.",
-      "Style": "hyperdetailed photography, product photography, professional photography, canon 5d mark iiji photo, 4k Unity, 8k, Zbrush, super-detailed, beautifully lit, octane rendering",
-      "Negative": "",
       "env_scene": [
         "134",
         3
@@ -236,6 +244,43 @@
     "class_type": "PseudoProcessEnvironmentalPrompts",
     "_meta": {
       "title": "Process Environmental Prompt Guidence"
+    }
+  },
+  "141": {
+    "inputs": {
+      "blur_radius": 25,
+      "sigma": [
+        "145",
+        0
+      ],
+      "invert": false,
+      "msk": [
+        "142",
+        0
+      ]
+    },
+    "class_type": "PseudoMaskBlur",
+    "_meta": {
+      "title": "Blur Mask"
+    }
+  },
+  "142": {
+    "inputs": {
+      "operation": "dilate (grow white areas)",
+      "kernel_size": 3,
+      "iterations": [
+        "143",
+        0
+      ],
+      "invert": false,
+      "msk": [
+        "134",
+        2
+      ]
+    },
+    "class_type": "PseudoMaskReshape",
+    "_meta": {
+      "title": "Reshape Mask"
     }
   },
   "143": {
@@ -369,11 +414,11 @@
         2
       ],
       "width": [
-        "156",
+        "153",
         0
       ],
       "height": [
-        "156",
+        "153",
         1
       ]
     },
@@ -395,47 +440,11 @@
       "title": "IPAdapter Unified Loader (Clone)"
     }
   },
-  "154": {
-    "inputs": {
-      "operation": "dilate (grow white areas)",
-      "kernel_size": 3,
-      "iterations": [
-        "143",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "134",
-        2
-      ]
-    },
-    "class_type": "PseudoMaskReshape",
-    "_meta": {
-      "title": "Reshape Mask"
-    }
-  },
-  "155": {
-    "inputs": {
-      "blur_radius": 25,
-      "sigma": [
-        "145",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "154",
-        0
-      ]
-    },
-    "class_type": "PseudoMaskBlur",
-    "_meta": {
-      "title": "Blur Mask"
-    }
-  },
-  "156": {
+  "153": {
     "inputs": {
       "scale_img_to": "1024",
-      "Process Image Prompt": "",
+      "Filler1": "",
+      "Filler2": "",
       "img": [
         "134",
         6
@@ -446,5 +455,10 @@
       "title": "Process Image Prompt"
     }
   }
-}
+
+
+
+  
+
+    }
 }

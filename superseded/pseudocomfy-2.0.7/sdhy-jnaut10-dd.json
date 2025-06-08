@@ -1,10 +1,9 @@
 {
-    "id": "sdlt-realviz50-ip",
+    "id": "sdhy-jnaut10-dd",
     "type": "comfy",
-    "name": "Lumen",
-    "description": "Basic SD Hyper model and 'ip-adpater' style regional prompting that handles image prompts.",
+    "name": "Hugo",
+    "description": "Basic SD Hyper model and 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
-    "pseudocomfy_version": "2.0.9",
     "variables": [
         {
             "name": "Adherence",
@@ -25,29 +24,29 @@
     ],
     "endpoint_requirements" : {
         "checkpoints": [
-            "realvisxlV50_v50LightningBakedvae.safetensors"
+            "Juggernaut_X_RunDiffusion_Hyper.safetensors"
         ],
         "custom_nodes": [
             "pseudocomfy"
         ],
         "controlnet": [
             "control-lora-depth-rank128.safetensors"
-        ],
-        "ipadapter": [
-            "ip-adapter-plus_sdxl_vit-h.safetensors"
-        ],
-        "clip_vision": [
-            "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
         ]
     },
     "prompt_requirements": {
-            "image": true,
+            "image": false,
             "text": true
     },
     "workflow": {
+
+
+
+
+
+
   "1": {
     "inputs": {
-      "ckpt_name": "realvisxlV50_v50LightningBakedvae.safetensors"
+      "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -66,11 +65,11 @@
         0
       ],
       "positive": [
-        "151",
+        "139",
         1
       ],
       "negative": [
-        "151",
+        "139",
         2
       ],
       "control_net": [
@@ -78,7 +77,7 @@
         0
       ],
       "image": [
-        "156",
+        "150",
         2
       ]
     },
@@ -106,11 +105,11 @@
   "43": {
     "inputs": {
       "width": [
-        "156",
+        "150",
         0
       ],
       "height": [
-        "156",
+        "150",
         1
       ],
       "batch_size": 1
@@ -132,13 +131,13 @@
   "47": {
     "inputs": {
       "seed": "__PSEUDORANDOM_SEED__",
-      "steps": 4,
-      "cfg": 1.8,
+      "steps": 6,
+      "cfg": 1.3,
       "sampler_name": "dpmpp_sde",
       "scheduler": "karras",
       "denoise": 1,
       "model": [
-        "151",
+        "139",
         0
       ],
       "positive": [
@@ -196,7 +195,12 @@
   "137": {
     "inputs": {
       "scale_msk_to": "1024",
-      "Material Mask": "",
+      "Filler1": "",
+      "Filler2": "",
+      "Filler3": "",
+      "Filler4": "",
+      "Filler5": "",
+      "Filler6": "",
       "mat_txts_lst": [
         "134",
         0
@@ -206,7 +210,7 @@
         1
       ],
       "mat_msks_lst": [
-        "155",
+        "141",
         0
       ]
     },
@@ -217,9 +221,6 @@
   },
   "138": {
     "inputs": {
-      "Scene": "objects on a matte white surface against an empty, neutral white background.",
-      "Style": "hyperdetailed photography, product photography, professional photography, canon 5d mark iiji photo, 4k Unity, 8k, Zbrush, super-detailed, beautifully lit, octane rendering",
-      "Negative": "",
       "env_scene": [
         "134",
         3
@@ -236,6 +237,87 @@
     "class_type": "PseudoProcessEnvironmentalPrompts",
     "_meta": {
       "title": "Process Environmental Prompt Guidence"
+    }
+  },
+  "139": {
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ],
+      "mat_txts_lst": [
+        "137",
+        0
+      ],
+      "mat_msks_lst": [
+        "137",
+        2
+      ],
+      "env_scene": [
+        "138",
+        0
+      ],
+      "env_style": [
+        "138",
+        1
+      ],
+      "env_negative": [
+        "138",
+        2
+      ],
+      "width": [
+        "150",
+        0
+      ],
+      "height": [
+        "150",
+        1
+      ]
+    },
+    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "_meta": {
+      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+    }
+  },
+  "141": {
+    "inputs": {
+      "blur_radius": 25,
+      "sigma": [
+        "145",
+        0
+      ],
+      "invert": false,
+      "msk": [
+        "142",
+        0
+      ]
+    },
+    "class_type": "PseudoMaskBlur",
+    "_meta": {
+      "title": "Blur Mask"
+    }
+  },
+  "142": {
+    "inputs": {
+      "operation": "dilate (grow white areas)",
+      "kernel_size": 3,
+      "iterations": [
+        "143",
+        0
+      ],
+      "invert": false,
+      "msk": [
+        "134",
+        2
+      ]
+    },
+    "class_type": "PseudoMaskReshape",
+    "_meta": {
+      "title": "Reshape Mask"
     }
   },
   "143": {
@@ -325,117 +407,11 @@
       "title": "Remap Float"
     }
   },
-  "151": {
-    "inputs": {
-      "env_cond_strength": 0.30000000000000004,
-      "mat_cond_strength": 1,
-      "ipadapter_weight": 1.0000000000000002,
-      "start_at": 0,
-      "end_at": 1,
-      "model": [
-        "152",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "ipadapter": [
-        "152",
-        1
-      ],
-      "mat_txts_lst": [
-        "137",
-        0
-      ],
-      "mat_imgs_lst": [
-        "137",
-        1
-      ],
-      "mat_msks_lst": [
-        "137",
-        2
-      ],
-      "env_scene": [
-        "138",
-        0
-      ],
-      "env_style": [
-        "138",
-        1
-      ],
-      "env_negative": [
-        "138",
-        2
-      ],
-      "width": [
-        "156",
-        0
-      ],
-      "height": [
-        "156",
-        1
-      ]
-    },
-    "class_type": "PseudoApplyIPAdaperSDXL",
-    "_meta": {
-      "title": "Apply IPAdaper Conditioning (SDXL)"
-    }
-  },
-  "152": {
-    "inputs": {
-      "preset": "PLUS (high strength)",
-      "model": [
-        "1",
-        0
-      ]
-    },
-    "class_type": "PseudoIPAdapterUnifiedLoaderClone",
-    "_meta": {
-      "title": "IPAdapter Unified Loader (Clone)"
-    }
-  },
-  "154": {
-    "inputs": {
-      "operation": "dilate (grow white areas)",
-      "kernel_size": 3,
-      "iterations": [
-        "143",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "134",
-        2
-      ]
-    },
-    "class_type": "PseudoMaskReshape",
-    "_meta": {
-      "title": "Reshape Mask"
-    }
-  },
-  "155": {
-    "inputs": {
-      "blur_radius": 25,
-      "sigma": [
-        "145",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "154",
-        0
-      ]
-    },
-    "class_type": "PseudoMaskBlur",
-    "_meta": {
-      "title": "Blur Mask"
-    }
-  },
-  "156": {
+  "150": {
     "inputs": {
       "scale_img_to": "1024",
-      "Process Image Prompt": "",
+      "Filler1": "",
+      "Filler2": "",
       "img": [
         "134",
         6
@@ -446,5 +422,9 @@
       "title": "Process Image Prompt"
     }
   }
-}
+
+
+
+
+    }
 }
