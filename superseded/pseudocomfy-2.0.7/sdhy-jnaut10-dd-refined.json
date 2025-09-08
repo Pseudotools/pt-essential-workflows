@@ -1,16 +1,15 @@
 {
-    "id": "sdlt-realviz50-dd-refined",
+    "id": "sdhy-jnaut10-dd-refined",
     "type": "comfy",
-    "name": "Lisette",
-    "description": "SD Lightning model with two-phase refinement architecture and 'dense diffusion' style regional prompting.",
+    "name": "Henriette",
+    "description": "SD Hyper model with two-phase refinement architecture and 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
-    "pseudocomfy_version": "2.0.9",
     "variables": [
         {
             "name": "Iteration",
             "key": "__ITERATION__",
             "type": "float",
-            "default": 0.5,
+            "default": 0.75,
             "range": [0.0,1.0],
             "description": "How many 'steps' to take to produce the render - more steps take more time, but results in a more refined render."
         },      
@@ -33,7 +32,7 @@
     ],
     "endpoint_requirements" : {
         "checkpoints": [
-            "realvisxlV50_v50LightningBakedvae.safetensors",
+            "Juggernaut_X_RunDiffusion_Hyper.safetensors",
             "sd_xl_refiner_1.0.safetensors"
         ],
         "custom_nodes": [
@@ -48,9 +47,14 @@
             "text": true
     },
     "workflow": {
+
+
+
+
+
   "1": {
     "inputs": {
-      "ckpt_name": "realvisxlV50_v50LightningBakedvae.safetensors"
+      "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -60,20 +64,20 @@
   "39": {
     "inputs": {
       "strength": [
-        "167",
+        "159",
         0
       ],
       "start_percent": 0,
       "end_percent": [
-        "161",
+        "160",
         0
       ],
       "positive": [
-        "153",
+        "143",
         1
       ],
       "negative": [
-        "153",
+        "143",
         2
       ],
       "control_net": [
@@ -81,7 +85,7 @@
         0
       ],
       "image": [
-        "176",
+        "164",
         2
       ]
     },
@@ -93,11 +97,11 @@
   "43": {
     "inputs": {
       "width": [
-        "176",
+        "164",
         0
       ],
       "height": [
-        "176",
+        "164",
         1
       ],
       "batch_size": 1
@@ -130,20 +134,20 @@
       "add_noise": "enable",
       "noise_seed": "__PSEUDORANDOM_SEED__",
       "steps": [
-        "163",
+        "153",
         0
       ],
-      "cfg": 1.5,
+      "cfg": 1.3,
       "sampler_name": "dpmpp_sde",
       "scheduler": "karras",
       "start_at_step": 0,
       "end_at_step": [
-        "164",
+        "151",
         0
       ],
       "return_with_leftover_noise": "enable",
       "model": [
-        "153",
+        "143",
         0
       ],
       "positive": [
@@ -195,30 +199,30 @@
   "130": {
     "inputs": {
       "add_noise": "disable",
-      "noise_seed": 0,
+      "noise_seed": "__PSEUDORANDOM_SEED__",
       "steps": [
-        "163",
+        "153",
         0
       ],
       "cfg": 5,
       "sampler_name": "dpmpp_sde",
       "scheduler": "karras",
       "start_at_step": [
-        "164",
+        "151",
         0
       ],
       "end_at_step": 10000,
       "return_with_leftover_noise": "disable",
       "model": [
-        "152",
+        "142",
         0
       ],
       "positive": [
-        "152",
+        "142",
         1
       ],
       "negative": [
-        "152",
+        "142",
         2
       ],
       "latent_image": [
@@ -272,39 +276,18 @@
       "title": "Save Image"
     }
   },
-  "144": {
-    "inputs": {
-      "string_path": "__PSEUDORANDOM_TEMP_PATH__"
-    },
-    "class_type": "PseudoLoadModelSnapshot",
-    "_meta": {
-      "title": "Load Model Snapshot"
-    }
-  },
-  "145": {
-    "inputs": {
-      "json_data": [
-        "144",
-        0
-      ]
-    },
-    "class_type": "PseudoUnpackModelSnapshot",
-    "_meta": {
-      "title": "Unpack Model Snapshot"
-    }
-  },
-  "151": {
+  "136": {
     "inputs": {
       "env_scene": [
-        "145",
+        "137",
         3
       ],
       "env_style": [
-        "145",
+        "137",
         4
       ],
       "env_negative": [
-        "145",
+        "137",
         5
       ]
     },
@@ -313,95 +296,65 @@
       "title": "Process Environmental Prompt Guidence"
     }
   },
-  "152": {
+  "137": {
     "inputs": {
-      "model": [
-        "124",
+      "json_data": [
+        "138",
         0
-      ],
-      "clip": [
-        "124",
-        1
-      ],
-      "mat_txts_lst": [
-        "154",
-        0
-      ],
-      "mat_msks_lst": [
-        "154",
-        2
-      ],
-      "env_scene": [
-        "151",
-        0
-      ],
-      "env_style": [
-        "151",
-        1
-      ],
-      "env_negative": [
-        "151",
-        2
-      ],
-      "width": [
-        "176",
-        0
-      ],
-      "height": [
-        "176",
-        1
       ]
     },
-    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "class_type": "PseudoUnpackModelSnapshot",
     "_meta": {
-      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+      "title": "Unpack Model Snapshot"
     }
   },
-  "153": {
+  "138": {
     "inputs": {
-      "model": [
-        "1",
+      "string_path": "__PSEUDORANDOM_TEMP_PATH__"
+    },
+    "class_type": "PseudoLoadModelSnapshot",
+    "_meta": {
+      "title": "Load Model Snapshot"
+    }
+  },
+  "139": {
+    "inputs": {
+      "operation": "dilate (grow white areas)",
+      "kernel_size": 3,
+      "iterations": [
+        "147",
         0
       ],
-      "clip": [
-        "1",
-        1
-      ],
-      "mat_txts_lst": [
-        "154",
-        0
-      ],
-      "mat_msks_lst": [
-        "154",
+      "invert": false,
+      "msk": [
+        "137",
         2
-      ],
-      "env_scene": [
-        "151",
-        0
-      ],
-      "env_style": [
-        "151",
-        1
-      ],
-      "env_negative": [
-        "151",
-        2
-      ],
-      "width": [
-        "176",
-        0
-      ],
-      "height": [
-        "176",
-        1
       ]
     },
-    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "class_type": "PseudoMaskReshape",
     "_meta": {
-      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+      "title": "Reshape Mask"
     }
   },
-  "154": {
+  "140": {
+    "inputs": {
+      "blur_radius": 25,
+      "sigma": [
+        "157",
+        0
+      ],
+      "invert": false,
+      "msk": [
+        "139",
+        0
+      ]
+    },
+    "class_type": "PseudoMaskBlur",
+    "_meta": {
+      "title": "Blur Mask"
+    }
+  },
+  "141": {
     "inputs": {
       "scale_msk_to": "1024",
       "Filler1": "",
@@ -411,15 +364,15 @@
       "Filler5": "",
       "Filler6": "",
       "mat_txts_lst": [
-        "145",
+        "137",
         0
       ],
       "mat_imgs_lst": [
-        "145",
+        "137",
         1
       ],
       "mat_msks_lst": [
-        "175",
+        "140",
         0
       ]
     },
@@ -428,44 +381,126 @@
       "title": "Process Material Prompt Guidence"
     }
   },
-  "160": {
+  "142": {
     "inputs": {
-      "value": "__ADHERENCE__"
+      "model": [
+        "124",
+        0
+      ],
+      "clip": [
+        "124",
+        1
+      ],
+      "mat_txts_lst": [
+        "141",
+        0
+      ],
+      "mat_msks_lst": [
+        "141",
+        2
+      ],
+      "env_scene": [
+        "136",
+        0
+      ],
+      "env_style": [
+        "136",
+        1
+      ],
+      "env_negative": [
+        "136",
+        2
+      ],
+      "width": [
+        "164",
+        0
+      ],
+      "height": [
+        "164",
+        1
+      ]
+    },
+    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "_meta": {
+      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+    }
+  },
+  "143": {
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ],
+      "mat_txts_lst": [
+        "141",
+        0
+      ],
+      "mat_msks_lst": [
+        "141",
+        2
+      ],
+      "env_scene": [
+        "136",
+        0
+      ],
+      "env_style": [
+        "136",
+        1
+      ],
+      "env_negative": [
+        "136",
+        2
+      ],
+      "width": [
+        "164",
+        0
+      ],
+      "height": [
+        "164",
+        1
+      ]
+    },
+    "class_type": "PseudoApplyDenseDiffusionSDXL",
+    "_meta": {
+      "title": "Apply Dense Diffusion Conditioning (SDXL)"
+    }
+  },
+  "145": {
+    "inputs": {
+      "value": "__MASK_SOFTNESS__"
     },
     "class_type": "PrimitiveFloat",
     "_meta": {
-      "title": "ADHERENCE"
+      "title": "MASK_SOFTNESS"
     }
   },
-  "161": {
+  "147": {
     "inputs": {
-      "tgt_min": 0.1,
-      "tgt_max": 0.9,
+      "rounding": "round",
       "val": [
-        "160",
+        "158",
         0
       ]
     },
-    "class_type": "PseudoRemapNormalizedFloat",
+    "class_type": "PseudoFloatToInt",
     "_meta": {
-      "title": "Remap Float"
+      "title": "Float to Int"
     }
   },
-  "162": {
+  "148": {
     "inputs": {
-      "tgt_min": 6,
-      "tgt_max": 8,
-      "val": [
-        "166",
-        0
-      ]
+      "value": "__ITERATION__"
     },
-    "class_type": "PseudoRemapNormalizedFloat",
+    "class_type": "PrimitiveFloat",
     "_meta": {
-      "title": "Remap Float"
+      "title": "ITERATION"
     }
   },
-  "163": {
+  "151": {
     "inputs": {
       "rounding": "round",
       "val": [
@@ -478,11 +513,11 @@
       "title": "Float to Int"
     }
   },
-  "164": {
+  "153": {
     "inputs": {
       "rounding": "round",
       "val": [
-        "165",
+        "161",
         0
       ]
     },
@@ -491,95 +526,21 @@
       "title": "Float to Int"
     }
   },
-  "165": {
+  "155": {
     "inputs": {
-      "tgt_min": 4,
-      "tgt_max": 6,
-      "val": [
-        "166",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "166": {
-    "inputs": {
-      "value": "__ITERATION__"
+      "value": "__ADHERENCE__"
     },
     "class_type": "PrimitiveFloat",
     "_meta": {
-      "title": "ITERATION"
+      "title": "ADHERENCE"
     }
   },
-  "167": {
-    "inputs": {
-      "tgt_min": 0.30000000000000004,
-      "tgt_max": 1,
-      "val": [
-        "160",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "170": {
-    "inputs": {
-      "rounding": "round",
-      "val": [
-        "171",
-        0
-      ]
-    },
-    "class_type": "PseudoFloatToInt",
-    "_meta": {
-      "title": "Float to Int"
-    }
-  },
-  "171": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 8,
-      "val": [
-        "174",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "172": {
-    "inputs": {
-      "operation": "dilate (grow white areas)",
-      "kernel_size": 3,
-      "iterations": [
-        "170",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "145",
-        2
-      ]
-    },
-    "class_type": "PseudoMaskReshape",
-    "_meta": {
-      "title": "Reshape Mask"
-    }
-  },
-  "173": {
+  "157": {
     "inputs": {
       "tgt_min": 1,
       "tgt_max": 10,
       "val": [
-        "174",
+        "145",
         0
       ]
     },
@@ -588,40 +549,83 @@
       "title": "Remap Float"
     }
   },
-  "174": {
+  "158": {
     "inputs": {
-      "value": "__MASK_SOFTNESS__"
-    },
-    "class_type": "PrimitiveFloat",
-    "_meta": {
-      "title": "MASK_SOFTNESS"
-    }
-  },
-  "175": {
-    "inputs": {
-      "blur_radius": 25,
-      "sigma": [
-        "173",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "172",
+      "tgt_min": 1,
+      "tgt_max": 8,
+      "val": [
+        "145",
         0
       ]
     },
-    "class_type": "PseudoMaskBlur",
+    "class_type": "PseudoRemapNormalizedFloat",
     "_meta": {
-      "title": "Blur Mask"
+      "title": "Remap Float"
     }
   },
-  "176": {
+  "159": {
+    "inputs": {
+      "tgt_min": 0.30000000000000004,
+      "tgt_max": 1,
+      "val": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "160": {
+    "inputs": {
+      "tgt_min": 0.1,
+      "tgt_max": 0.9,
+      "val": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "161": {
+    "inputs": {
+      "tgt_min": 8,
+      "tgt_max": 12,
+      "val": [
+        "148",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "162": {
+    "inputs": {
+      "tgt_min": 4,
+      "tgt_max": 6,
+      "val": [
+        "148",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "164": {
     "inputs": {
       "scale_img_to": "1024",
       "Filler1": "",
       "Filler2": "",
       "img": [
-        "145",
+        "137",
         6
       ]
     },
@@ -630,6 +634,8 @@
       "title": "Process Image Prompt"
     }
   }
-}
 
+
+
+    }
 }

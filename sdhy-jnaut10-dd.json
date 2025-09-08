@@ -4,6 +4,7 @@
     "name": "Hugo",
     "description": "Basic SD Hyper model and 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
+    "pseudocomfy_version": "2.0.9",
     "variables": [
         {
             "name": "Adherence",
@@ -38,12 +39,6 @@
             "text": true
     },
     "workflow": {
-
-
-
-
-
-
   "1": {
     "inputs": {
       "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
@@ -210,7 +205,7 @@
         1
       ],
       "mat_msks_lst": [
-        "141",
+        "155",
         0
       ]
     },
@@ -283,93 +278,6 @@
       "title": "Apply Dense Diffusion Conditioning (SDXL)"
     }
   },
-  "141": {
-    "inputs": {
-      "blur_radius": 25,
-      "sigma": [
-        "145",
-        0
-      ],
-      "invert": false,
-      "msk": [
-        "142",
-        0
-      ]
-    },
-    "class_type": "PseudoMaskBlur",
-    "_meta": {
-      "title": "Blur Mask"
-    }
-  },
-  "142": {
-    "inputs": {
-      "operation": "dilate (grow white areas)",
-      "kernel_size": 3,
-      "iterations": [
-        "143",
-        0
-      ],
-      "invert": false,
-      "msk": [
-        "134",
-        2
-      ]
-    },
-    "class_type": "PseudoMaskReshape",
-    "_meta": {
-      "title": "Reshape Mask"
-    }
-  },
-  "143": {
-    "inputs": {
-      "rounding": "round",
-      "val": [
-        "144",
-        0
-      ]
-    },
-    "class_type": "PseudoFloatToInt",
-    "_meta": {
-      "title": "Float to Int"
-    }
-  },
-  "144": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 8,
-      "val": [
-        "146",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "145": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 10,
-      "val": [
-        "146",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "146": {
-    "inputs": {
-      "value": "__MASK_SOFTNESS__"
-    },
-    "class_type": "PrimitiveFloat",
-    "_meta": {
-      "title": "MASK_SOFTNESS"
-    }
-  },
   "147": {
     "inputs": {
       "value": "__ADHERENCE__"
@@ -421,10 +329,93 @@
     "_meta": {
       "title": "Process Image Prompt"
     }
-  }
-
-
-
-
+  },
+  "151": {
+    "inputs": {
+      "rounding": "round",
+      "val": [
+        "152",
+        0
+      ]
+    },
+    "class_type": "PseudoFloatToInt",
+    "_meta": {
+      "title": "Float to Int"
     }
+  },
+  "152": {
+    "inputs": {
+      "tgt_min": 1,
+      "tgt_max": 8,
+      "val": [
+        "153",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "153": {
+    "inputs": {
+      "value": "__MASK_SOFTNESS__"
+    },
+    "class_type": "PrimitiveFloat",
+    "_meta": {
+      "title": "MASK_SOFTNESS"
+    }
+  },
+  "154": {
+    "inputs": {
+      "tgt_min": 1,
+      "tgt_max": 10,
+      "val": [
+        "153",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "155": {
+    "inputs": {
+      "blur_radius": 25,
+      "sigma": [
+        "154",
+        0
+      ],
+      "invert": false,
+      "msks_list": [
+        "156",
+        0
+      ]
+    },
+    "class_type": "PseudoMaskBlur",
+    "_meta": {
+      "title": "Blur Mask"
+    }
+  },
+  "156": {
+    "inputs": {
+      "operation": "dilate (grow white areas)",
+      "kernel_size": 3,
+      "iterations": [
+        "151",
+        0
+      ],
+      "invert": false,
+      "msks_list": [
+        "134",
+        2
+      ]
+    },
+    "class_type": "PseudoMaskReshape",
+    "_meta": {
+      "title": "Reshape Mask"
+    }
+  }
+}
 }

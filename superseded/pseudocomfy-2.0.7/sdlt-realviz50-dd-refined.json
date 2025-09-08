@@ -4,7 +4,6 @@
     "name": "Lisette",
     "description": "SD Lightning model with two-phase refinement architecture and 'dense diffusion' style regional prompting.",
     "pseudorandom_workflow_scheme_version": 0.1,
-    "pseudocomfy_version": "2.0.9",
     "variables": [
         {
             "name": "Iteration",
@@ -81,7 +80,7 @@
         0
       ],
       "image": [
-        "176",
+        "155",
         2
       ]
     },
@@ -93,11 +92,11 @@
   "43": {
     "inputs": {
       "width": [
-        "176",
+        "155",
         0
       ],
       "height": [
-        "176",
+        "155",
         1
       ],
       "batch_size": 1
@@ -195,7 +194,7 @@
   "130": {
     "inputs": {
       "add_noise": "disable",
-      "noise_seed": 0,
+      "noise_seed": "__PSEUDORANDOM_SEED__",
       "steps": [
         "163",
         0
@@ -293,8 +292,48 @@
       "title": "Unpack Model Snapshot"
     }
   },
+  "146": {
+    "inputs": {
+      "operation": "dilate (grow white areas)",
+      "kernel_size": 3,
+      "iterations": [
+        "156",
+        0
+      ],
+      "invert": false,
+      "msk": [
+        "145",
+        2
+      ]
+    },
+    "class_type": "PseudoMaskReshape",
+    "_meta": {
+      "title": "Reshape Mask"
+    }
+  },
+  "147": {
+    "inputs": {
+      "blur_radius": 25,
+      "sigma": [
+        "158",
+        0
+      ],
+      "invert": false,
+      "msk": [
+        "146",
+        0
+      ]
+    },
+    "class_type": "PseudoMaskBlur",
+    "_meta": {
+      "title": "Blur Mask"
+    }
+  },
   "151": {
     "inputs": {
+      "Scene": "objects on a matte white surface against an empty, neutral white background.",
+      "Style": "hyperdetailed photography, product photography, professional photography, canon 5d mark iiji photo, 4k Unity, 8k, Zbrush, super-detailed, beautifully lit, octane rendering",
+      "Negative": "",
       "env_scene": [
         "145",
         3
@@ -344,11 +383,11 @@
         2
       ],
       "width": [
-        "176",
+        "155",
         0
       ],
       "height": [
-        "176",
+        "155",
         1
       ]
     },
@@ -388,11 +427,11 @@
         2
       ],
       "width": [
-        "176",
+        "155",
         0
       ],
       "height": [
-        "176",
+        "155",
         1
       ]
     },
@@ -404,12 +443,7 @@
   "154": {
     "inputs": {
       "scale_msk_to": "1024",
-      "Filler1": "",
-      "Filler2": "",
-      "Filler3": "",
-      "Filler4": "",
-      "Filler5": "",
-      "Filler6": "",
+      "Material Mask": "",
       "mat_txts_lst": [
         "145",
         0
@@ -419,13 +453,77 @@
         1
       ],
       "mat_msks_lst": [
-        "175",
+        "147",
         0
       ]
     },
     "class_type": "PseudoProcessMaterialPrompts",
     "_meta": {
       "title": "Process Material Prompt Guidence"
+    }
+  },
+  "155": {
+    "inputs": {
+      "scale_img_to": "1024",
+      "Process Image Prompt": "",
+      "img": [
+        "145",
+        6
+      ]
+    },
+    "class_type": "PseudoProcessImagePrompt",
+    "_meta": {
+      "title": "Process Image Prompt"
+    }
+  },
+  "156": {
+    "inputs": {
+      "rounding": "round",
+      "val": [
+        "157",
+        0
+      ]
+    },
+    "class_type": "PseudoFloatToInt",
+    "_meta": {
+      "title": "Float to Int"
+    }
+  },
+  "157": {
+    "inputs": {
+      "tgt_min": 1,
+      "tgt_max": 8,
+      "val": [
+        "159",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "158": {
+    "inputs": {
+      "tgt_min": 1,
+      "tgt_max": 10,
+      "val": [
+        "159",
+        0
+      ]
+    },
+    "class_type": "PseudoRemapNormalizedFloat",
+    "_meta": {
+      "title": "Remap Float"
+    }
+  },
+  "159": {
+    "inputs": {
+      "value": "__MASK_SOFTNESS__"
+    },
+    "class_type": "PrimitiveFloat",
+    "_meta": {
+      "title": "MASK_SOFTNESS"
     }
   },
   "160": {
@@ -526,108 +624,6 @@
     "class_type": "PseudoRemapNormalizedFloat",
     "_meta": {
       "title": "Remap Float"
-    }
-  },
-  "170": {
-    "inputs": {
-      "rounding": "round",
-      "val": [
-        "171",
-        0
-      ]
-    },
-    "class_type": "PseudoFloatToInt",
-    "_meta": {
-      "title": "Float to Int"
-    }
-  },
-  "171": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 8,
-      "val": [
-        "174",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "172": {
-    "inputs": {
-      "operation": "dilate (grow white areas)",
-      "kernel_size": 3,
-      "iterations": [
-        "170",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "145",
-        2
-      ]
-    },
-    "class_type": "PseudoMaskReshape",
-    "_meta": {
-      "title": "Reshape Mask"
-    }
-  },
-  "173": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 10,
-      "val": [
-        "174",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "174": {
-    "inputs": {
-      "value": "__MASK_SOFTNESS__"
-    },
-    "class_type": "PrimitiveFloat",
-    "_meta": {
-      "title": "MASK_SOFTNESS"
-    }
-  },
-  "175": {
-    "inputs": {
-      "blur_radius": 25,
-      "sigma": [
-        "173",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "172",
-        0
-      ]
-    },
-    "class_type": "PseudoMaskBlur",
-    "_meta": {
-      "title": "Blur Mask"
-    }
-  },
-  "176": {
-    "inputs": {
-      "scale_img_to": "1024",
-      "Filler1": "",
-      "Filler2": "",
-      "img": [
-        "145",
-        6
-      ]
-    },
-    "class_type": "PseudoProcessImagePrompt",
-    "_meta": {
-      "title": "Process Image Prompt"
     }
   }
 }
