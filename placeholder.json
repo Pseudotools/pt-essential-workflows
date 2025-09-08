@@ -1,0 +1,59 @@
+{
+    "id": "placeholder",
+    "type": "comfy",
+    "name": "Placeholder",
+    "description": "A placeholder workflow to support UI development.",
+    "pseudorandom_workflow_scheme_version": 0.1,
+    "variables": [
+        {
+            "name": "One",
+            "key": "__ONE__",
+            "type": "float",
+            "default": 0.8,
+            "range": [0.0,1.0],
+            "description": "How much to do the first thing."
+        },
+        {
+            "name": "Two",
+            "key": "__TWO__",
+            "type": "int",
+            "default": 2,
+            "range": [0,10],
+            "description": "How much to do the second thing."
+        },
+        {
+            "name": "Three",
+            "key": "__THREE__",
+            "type": "string",
+            "default": "default_value",
+            "description": "How much to do the third thing."
+        }        
+    ],
+    "endpoint_requirements" : {
+        "checkpoints": [],
+        "custom_nodes": [
+            "pseudocomfy"
+        ],
+        "controlnet": [],
+        "ipadapter": [],
+        "clip_vision": []
+    },
+    "prompt_requirements": {
+            "image": true,
+            "text": true
+    },
+    "workflow": {
+
+
+  "1": {
+    "inputs": {
+      "ckpt_name": "fake"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  }
+
+}
+}
