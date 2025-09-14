@@ -26,7 +26,7 @@ Every workflow JSON file defines:
 | **`type`**                                 | string          | Workflow engine family. For ComfyUI workflows use `"comfy"`.                                                     |
 | **`name`**                                 | string          | Human-readable title shown in menus and UIs.                                                                     |
 | **`description`**                          | string          | One-line summary of what the workflow does or which model family it targets.                                     |
-| **`pseudorandom_workflow_scheme_version`** | number          | Schema version; set to `0.2` for this format.                                                                    |
+| **`schema_version`** | number          | Schema version; set to `0.2` for this format.                                                                    |
 | **`thumbnail`**                            | string (base64) | Optional preview image shown in user interfaces.                                                                 |
 | **`rank_order`**                           | number          | Optional integer to control display ordering within a larger library; workflows without a value fall to the end. |
 | **`environmental_prompt_capabilities`**    | object          | Declares which global prompts are supported (see §3).                                                            |
@@ -162,7 +162,7 @@ No other reserved tokens are supported.
 ## 8 • Versioning
 
 * Current schema: **0.2**.
-* Update `pseudorandom_workflow_scheme_version` only when the schema itself changes.
+* Update `schema_version` only when the schema itself changes.
 * Incrementing is **not required** for normal graph or default-value tweaks.
 
 ---
