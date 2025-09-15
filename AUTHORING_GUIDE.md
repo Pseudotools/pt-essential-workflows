@@ -1,15 +1,15 @@
-# Pseudotools Workflow Authoring Guide
+# Pseudotools Workflow Scheme Authoring Guide
 
 *Schema version 0.2*
 
-This document describes how each workflow JSON file is structured for the **pt-essential-workflows** repository.  
+This document describes how each workflow scheme JSON file is structured for the **pt-essential-workflows** repository.  
 It is intended for authors creating or editing workflows so that they integrate smoothly with Pseudotools runners, user interfaces, and the new snapshot format.
 
 ---
 
 ## 1 • Overview
 
-Every workflow JSON file defines:
+Every workflow scheme JSON file defines:
 
 1. **Metadata** – name, description, optional thumbnail and rank order.
 2. **Global Guidance Capabilities** – which user-defined global prompts (`txt_scene`, `txt_style`, `txt_negative`, `img_style`) the workflow accepts.
@@ -36,9 +36,9 @@ Every workflow JSON file defines:
 | **`spatial_guidance_capabilities`** | object          | Declares which model-derived full-frame guidance maps are supported (see §5).                                    |
 | **`variables`**                     | array           | Tunable parameters (see §6).                                                                                     |
 | **`endpoint_requirements`**         | object          | External resources required (see §7).                                                                            |
-| **`workflow`**                      | object          | The ComfyUI node graph itself (see §8).                                                                          |
+| **`workflow`**                      | object          | The ComfyUI node graph (the 'workflow') itself (see §8).                                                                          |
 
-> **ID note:** A workflow’s ID is **derived from its filename** (e.g. `sdlt-realviz50-ip.json`) and is not specified inside the JSON.
+> **ID note:** A workflow scheme’s ID is **derived from its filename** (e.g. `sdlt-realviz50-ip.json`) and is not specified inside the JSON.
 
 ---
 
@@ -190,6 +190,3 @@ No other reserved tokens are supported.
 * Update `schema_version` only when the schema itself changes.
 * Incrementing is **not required** for normal graph or default-value tweaks.
 
----
-
-By adopting these field names and capability blocks, workflows remain fully aligned with the new three-category snapshot schema (`global_guidance`, `regional_guidance`, `spatial_guidance`) and communicate precisely which kinds of prompts and guidance maps they support.
