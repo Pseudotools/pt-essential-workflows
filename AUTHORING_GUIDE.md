@@ -113,7 +113,7 @@ Variables expose parameters that can be tuned at runtime and substituted directl
   "name": "Sampling Steps",
   "key": "__STEPS__",
   "type": "int",                    // int | float | bool | string
-  "short_description": "Number of denoising steps.",
+  "description": "Number of denoising steps.",
   "default": 30,
   "min": 10,                        // optional
   "max": 100,                       // optional
@@ -133,7 +133,7 @@ Variables expose parameters that can be tuned at runtime and substituted directl
 
 Key points:
 
-* `short_description` is concise and intended for quick UI help or AI assistance.
+* `description` is concise and intended for quick UI help or AI assistance.
 * `enum_options` is a map of **key → human label**; keep `type` consistent with the key type (e.g., `"string"` for sampler names).
 * `binds_to` must match exactly one token inside the `workflow` graph.
 
@@ -178,7 +178,7 @@ No other reserved tokens are supported.
 2. Provide a clear **name** and **description** inside the JSON.
 3. Add an optional **thumbnail** image and/or **rank\_order** if needed for display.
 4. Declare **global\_guidance\_capabilities**, **regional\_guidance\_capabilities**, and **spatial\_guidance\_capabilities** exactly.
-5. Define **variables** with precise `short_description`s and correct `binds_to` tokens.
+5. Define **variables** with precise `description`s and correct `binds_to` tokens.
 6. List all required models or nodes in **endpoint\_requirements**.
 7. Export the ComfyUI graph and insert it into the `workflow` field, using only the supported variable tokens.
 
