@@ -23,20 +23,20 @@ Every workflow scheme JSON file defines:
 
 ## 2 • Top-Level Fields
 
-| Field                              | Type            | Purpose                                                                                                          |
-| ----------------------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **`type`**                          | string          | Workflow engine family. For ComfyUI workflows use `"comfy"`.                                                     |
-| **`name`**                          | string          | Human-readable title shown in menus and UIs.                                                                     |
-| **`description`**                   | string          | One-line summary of what the workflow does or which model family it targets.                                     |
-| **`schema_version`**                | number          | Schema version; set to `0.2` for this format.                                                                    |
-| **`thumbnail`**                     | string (base64) | Optional preview image shown in user interfaces.                                                                 |
-| **`rank_order`**                    | number          | Optional integer to control display ordering within a larger library; workflows without a value fall to the end. |
-| **`global_guidance_capabilities`**  | object          | Declares which global prompts are supported (see §3).                                                            |
-| **`regional_guidance_capabilities`**| object          | Declares which per-region prompts are supported (see §4).                                                        |
-| **`spatial_guidance_capabilities`** | object          | Declares which model-derived full-frame guidance maps are supported (see §5).                                    |
-| **`variables`**                     | array           | Tunable parameters (see §6).                                                                                     |
-| **`endpoint_requirements`**         | object          | External resources required (see §7).                                                                            |
-| **`workflow`**                      | object          | The ComfyUI node graph (the 'workflow') itself (see §8).                                                                          |
+| Field                                       | Type            | Purpose                                                                                                          |
+| ------------------------------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **`type`**                                  | string          | Workflow engine family. For ComfyUI workflows use `"comfy"`.                                                     |
+| **`name`**                                  | string          | Human-readable title shown in menus and UIs.                                                                     |
+| **`description`**                           | string          | One-line summary of what the workflow does or which model family it targets.                                     |
+| **`pseudorandom_workflow_schema_version`**  | number          | Schema version; set to `0.2` for this format.                                                                    |
+| **`thumbnail`**                             | string (base64) | Optional preview image shown in user interfaces.                                                                 |
+| **`rank_order`**                            | number          | Optional integer to control display ordering within a larger library; workflows without a value fall to the end. |
+| **`global_guidance_capabilities`**          | object          | Declares which global prompts are supported (see §3).                                                            |
+| **`regional_guidance_capabilities`**        | object          | Declares which per-region prompts are supported (see §4).                                                        |
+| **`spatial_guidance_capabilities`**         | object          | Declares which model-derived full-frame guidance maps are supported (see §5).                                    |
+| **`variables`**                             | array           | Tunable parameters (see §6).                                                                                     |
+| **`endpoint_requirements`**                 | object          | External resources required (see §7).                                                                            |
+| **`workflow`**                              | object          | The ComfyUI node graph (the 'workflow') itself (see §8).                                                         |
 
 > **ID note:** A workflow scheme’s ID is **derived from its filename** (e.g. `sdlt-realviz50-ip.json`) and is not specified inside the JSON.
 
@@ -118,16 +118,12 @@ Variables expose parameters that can be tuned at runtime and substituted directl
   "min": 10,                        // optional
   "max": 100,                       // optional
   "step": 1,                         // optional
-  "precision": 0,                    // optional, floats only
-  "unit": "steps",                   // optional UI hint
   "enum_options": {                  // optional key–value pairs if enumerated
     "euler": "Euler sampler",
     "ddim": "DDIM sampler",
     "dpmpp_2m": "DPM++ 2M sampler"
   },
   "binds_to": "__STEPS__",           // single token inside the graph
-  "order": 10,                       // optional display order
-  "advanced": false                  // optional: UI may group under “Advanced”
 }
 ```
 
