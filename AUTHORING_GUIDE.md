@@ -47,17 +47,17 @@ Describe **global** scene controls.
 
 ```json
 "environmental_prompt_capabilities": {
-  "scene_text":    "required" | "optional" | "unsupported",
-  "style_text":    "required" | "optional" | "unsupported",
-  "negative_text": "required" | "optional" | "unsupported",
-  "style_image":   "required" | "optional" | "unsupported"
+  "txt_scene":    "required" | "optional" | "unsupported",
+  "txt_style":    "required" | "optional" | "unsupported",
+  "txt_negative": "required" | "optional" | "unsupported",
+  "img_style":   "required" | "optional" | "unsupported"
 }
 ```
 
-* `scene_text` – overall program, massing, composition.
-* `style_text` – global look/lighting/lens descriptors.
-* `negative_text` – things to avoid globally.
-* `style_image` – reference image (e.g., for IP-Adapter) affecting the overall style.
+* `txt_scene` – overall program, massing, composition.
+* `txt_style` – global look/lighting/lens descriptors.
+* `txt_negative` – things to avoid globally.
+* `img_style` – reference image (e.g., for IP-Adapter) affecting the overall style.
 
 ### Material Prompts
 
