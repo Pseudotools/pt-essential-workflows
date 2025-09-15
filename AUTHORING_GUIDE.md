@@ -111,14 +111,13 @@ Variables expose parameters that can be tuned at runtime and substituted directl
 ```json
 {
   "name": "Sampling Steps",
-  "key": "__STEPS__",
   "type": "int",                    // int | float | bool | string
   "description": "Number of denoising steps.",
   "default": 30,
   "min": 10,                        // optional
   "max": 100,                       // optional
   "step": 1,                         // optional
-  "enum_options": {                  // optional key–value pairs if enumerated
+  "enum_options": {                  // optional key–value pairs if enumerated; values should match variable type
     "euler": "Euler sampler",
     "ddim": "DDIM sampler",
     "dpmpp_2m": "DPM++ 2M sampler"
