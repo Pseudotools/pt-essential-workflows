@@ -70,8 +70,8 @@ Describe **per-region or per-object** content.
 }
 ```
 
-* `text` – region-specific material or object prompts.
-* `image` – region-specific reference images.
+* `txt` – region-specific material or object prompts.
+* `img` – region-specific reference images.
 
 Masks are implicitly required for all material prompts and do not need to be declared.
 
