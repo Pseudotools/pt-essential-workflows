@@ -25,7 +25,6 @@
   "variables": [
     {
       "name": "Adherence",
-      "key": "__ADHERENCE__",
       "type": "float",
       "description": "How much to follow model geometry via ControlNet depth.",
       "default": 0.8,
@@ -35,7 +34,6 @@
     },
     {
       "name": "Mask Softness",
-      "key": "__MASK_SOFTNESS__",
       "type": "float",
       "description": "How much to 'soften' material prompt masks—softer masks apply to wider areas; harder ones are more constrained.",
       "default": 0.9,
