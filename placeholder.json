@@ -3,7 +3,7 @@
     "type": "comfy",
     "name": "Placeholder",
     "description": "A placeholder workflow to support UI development.",
-    "pseudorandom_workflow_scheme_version": 0.1,
+    "pseudorandom_workflow_schema_version": 0.2,
     "variables": [
         {
             "name": "One",
