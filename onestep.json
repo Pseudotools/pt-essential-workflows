@@ -60,7 +60,7 @@
         "euler": "Fast E",
         "ddim": "DDIM, y",
         "dpmpp_2m": "DPM++ 2M",
-        "heun": 0.1
+        "heun": "honey"
       },
       "binds_to": "__SAMPLER__"
     }
