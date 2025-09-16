@@ -1,59 +1,156 @@
 {
-    "id": "placeholder",
-    "type": "comfy",
-    "name": "Placeholder",
-    "description": "A placeholder workflow to support UI development.",
-    "pseudorandom_workflow_schema_version": 0.2,
-    "variables": [
-        {
-            "name": "One",
-            "key": "__ONE__",
-            "type": "float",
-            "default": 0.8,
-            "range": [0.0,1.0],
-            "description": "How much to do the first thing."
-        },
-        {
-            "name": "Two",
-            "key": "__TWO__",
-            "type": "int",
-            "default": 2,
-            "range": [0,10],
-            "description": "How much to do the second thing."
-        },
-        {
-            "name": "Three",
-            "key": "__THREE__",
-            "type": "string",
-            "default": "default_value",
-            "description": "How much to do the third thing."
-        }        
-    ],
-    "endpoint_requirements" : {
-        "checkpoints": [],
-        "custom_nodes": [
-            "pseudocomfy"
-        ],
-        "controlnet": [],
-        "ipadapter": [],
-        "clip_vision": []
-    },
-    "prompt_requirements": {
-            "image": true,
-            "text": true
-    },
-    "workflow": {
+  "type": "comfy",
+  "name": "Placeholder",
+  "description": "A placeholder workflow to support UI development.",
 
-  "1": {
-    "inputs": {
-      "ckpt_name": "fake"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Load Checkpoint"
-    }
+  "pseudorandom_workflow_schema_version": 0.2,
+
+  "global_guidance_capabilities": {
+    "txt_scene": "optional",
+    "txt_style": "optional",
+    "txt_negative": "optional",
+    "img_style": "optional"
   },
-  "2": "__PSEUDORANDOM_TEMP_PATH__",
-  "3": "__PSEUDORANDOM_SEED__"
-}
+
+  "regional_guidance_capabilities": {
+    "text": "optional",
+    "image": "optional"
+  },
+
+  "spatial_guidance_capabilities": {
+    "depth": "optional",
+    "edge": "optional"
+  },
+
+  "variables": [
+    {
+      "name": "One",
+      "key": "__ONE__",
+      "type": "float",
+      "description": "How much to do the first thing.",
+      "default": 0.8,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05,
+      "binds_to": "__ONE__"
+    },
+    {
+      "name": "Two",
+      "key": "__TWO__",
+      "type": "int",
+      "description": "How much to do the second thing.",
+      "default": 2,
+      "min": 0,
+      "max": 10,
+      "binds_to": "__TWO__"
+    },
+    {
+      "name": "Three",
+      "key": "__THREE__",
+      "type": "string",
+      "description": "How much to do the third thing.",
+      "default": "default_value",
+      "binds_to": "__THREE__"
+    },
+
+    // ---- Additional variables for UI testing ----
+
+    {
+      "name": "Enable High Resolution",
+      "key": "__HIGH_RES__",
+      "type": "bool",
+      "description": "Enable high-resolution image generation.",
+      "default": true,
+      "binds_to": "__HIGH_RES__"
+    },
+    {
+      "name": "Guidance Strength",
+      "key": "__GUIDANCE_STRENGTH__",
+      "type": "float",
+      "description": "Blend strength for guidance (no min/max set).",
+      "step": 0.05,
+      "binds_to": "__GUIDANCE_STRENGTH__"
+    },
+    {
+      "name": "Seed Offset",
+      "key": "__SEED_OFFSET__",
+      "type": "int",
+      "description": "Offset added to the base seed (no default; min/max set).",
+      "min": -100,
+      "max": 100,
+      "binds_to": "__SEED_OFFSET__"
+    },
+    {
+      "name": "Sampler Method",
+      "key": "__SAMPLER__",
+      "type": "string",
+      "description": "Algorithm used for denoising.",
+      "default": "euler",
+      "enum_options": {
+        "euler": "Euler - Fast and stable",
+        "ddim": "DDIM - Deterministic",
+        "dpmpp_2m": "DPM++ 2M - High quality",
+        "heun": "Heun - Improved accuracy"
+      },
+      "binds_to": "__SAMPLER__"
+    },
+    {
+      "name": "Notes",
+      "key": "__NOTES__",
+      "type": "string",
+      "description": "Freeform notes (no default).",
+      "binds_to": "__NOTES__"
+    },
+    {
+      "name": "Use Style Image",
+      "key": "__USE_STYLE_IMAGE__",
+      "type": "bool",
+      "description": "Toggle to enable style image when available (no default).",
+      "binds_to": "__USE_STYLE_IMAGE__"
+    },
+    {
+      "name": "Gamma",
+      "key": "__GAMMA__",
+      "type": "float",
+      "description": "Output gamma correction (min only).",
+      "default": 1.0,
+      "min": 0.1,
+      "binds_to": "__GAMMA__"
+    },
+    {
+      "name": "Tiling",
+      "key": "__TILING__",
+      "type": "int",
+      "description": "Tile size for processing.",
+      "default": 8,
+      "min": 2,
+      "max": 16,
+      "step": 2,
+      "binds_to": "__TILING__"
+    }
+  ],
+
+  "endpoint_requirements": {
+    "checkpoints": [],
+    "custom_nodes": [
+      "pseudocomfy"
+    ],
+    "controlnet": [],
+    "ipadapter": [],
+    "clip_vision": []
+  },
+
+  "workflow": {
+    "1": {
+      "inputs": {
+        "ckpt_name": "fake"
+      },
+      "class_type": "CheckpointLoaderSimple",
+      "_meta": {
+        "title": "Load Checkpoint"
+      }
+    },
+    "2": "__PSEUDORANDOM_TEMP_PATH__",
+    "3": "__PSEUDORANDOM_SEED__"
+  }
 }
