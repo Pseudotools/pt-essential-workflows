@@ -91,10 +91,10 @@
       "is_basic": false,
       "default": "euler",
       "enum_options": {
-        "euler": "Euler - Fast and stable",
-        "ddim": "DDIM - Deterministic",
-        "dpmpp_2m": "DPM++ 2M - High quality",
-        "heun": "Heun - Improved accuracy"
+        "euler": "Fast",
+        "ddim": "Deterministic",
+        "dpmpp_2m": "High quality",
+        "heun": "Improved accuracy"
       },
       "binds_to": "__SAMPLER__"
     },
