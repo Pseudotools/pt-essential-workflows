@@ -53,8 +53,6 @@
       "binds_to": "__THREE__"
     },
 
-    // ---- Additional variables for UI testing ----
-
     {
       "name": "Enable High Resolution",
       "key": "__HIGH_RES__",
@@ -68,6 +66,7 @@
       "key": "__GUIDANCE_STRENGTH__",
       "type": "float",
       "description": "Blend strength for guidance (no min/max set).",
+      "default": 1.0,
       "step": 0.05,
       "binds_to": "__GUIDANCE_STRENGTH__"
     },
