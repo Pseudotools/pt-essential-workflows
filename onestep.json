@@ -40,7 +40,15 @@
       "min": 0.0,
       "max": 1.0,
       "binds_to": "__MASK_SOFTNESS__"
-    }
+    },
+    {
+      "name": "Three",
+      "key": "__THREE__",
+      "type": "string",
+      "description": "How much to do the third thing.",
+      "default": "i am a default",
+      "binds_to": "__THREE__"
+    }    
   ],
 
   "endpoint_requirements": {
