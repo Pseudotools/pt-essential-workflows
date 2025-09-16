@@ -48,7 +48,22 @@
       "description": "How much to do the third thing.",
       "default": "i am a default",
       "binds_to": "__THREE__"
-    }    
+    },
+    {
+      "name": "Sampler Method",
+      "key": "__SAMPLER__",
+      "type": "string",
+      "description": "Algorithm used for denoising.",
+      "is_basic": false,
+      "default": "euler",
+      "enum_options": {
+        "euler": "Euler - Fast and stable",
+        "ddim": "DDIM - Deterministic",
+        "dpmpp_2m": "DPM++ 2M - High quality",
+        "heun": "Heun - Improved accuracy"
+      },
+      "binds_to": "__SAMPLER__"
+    }
   ],
 
   "endpoint_requirements": {
