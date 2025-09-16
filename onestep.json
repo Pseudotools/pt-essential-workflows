@@ -57,10 +57,10 @@
       "is_basic": false,
       "default": "euler",
       "enum_options": {
-        "euler": "Euler - Fast and stable",
-        "ddim": "DDIM - Deterministic",
-        "dpmpp_2m": "DPM++ 2M - High quality",
-        "heun": "Heun - Improved accuracy"
+        "euler": "Fast E",
+        "ddim": "DDIM, y",
+        "dpmpp_2m": "DPM++ 2M",
+        "heun": "Heuny"
       },
       "binds_to": "__SAMPLER__"
     }
