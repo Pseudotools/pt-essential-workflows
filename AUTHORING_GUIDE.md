@@ -110,27 +110,109 @@ Variables expose parameters that can be tuned at runtime and substituted directl
 
 ```json
 {
-  "name": "Sampling Steps",
-  "type": "int",                    // int | float | bool | string
-  "description": "Number of denoising steps.",
-  "default": 30,
-  "min": 10,                        // optional
-  "max": 100,                       // optional
-  "step": 1,                         // optional
-  "enum_options": {                  // optional key–value pairs if enumerated; values should match variable type
+  "name": "Sampling Steps",                    // REQUIRED: Human-readable name
+  "type": "int",                              // REQUIRED: int | float | bool | string
+  "description": "Number of denoising steps.", // REQUIRED: Concise description for UI help
+  "default": 30,                              // REQUIRED: Default value (must match type)
+  "binds_to": "__STEPS__",                    // REQUIRED: Token to replace in workflow
+  "min": 10,                                  // OPTIONAL: Minimum value (int/float only)
+  "max": 100,                                 // OPTIONAL: Maximum value (int/float only)
+  "step": 1,                                  // OPTIONAL: Step size (int/float only)
+  "enum_options": {                           // OPTIONAL: Key-value pairs for dropdowns
     "euler": "Euler sampler",
-    "ddim": "DDIM sampler",
+    "ddim": "DDIM sampler", 
     "dpmpp_2m": "DPM++ 2M sampler"
-  },
-  "binds_to": "__STEPS__",           // single token inside the graph
+  }
 }
 ```
 
-Key points:
+### Field Details
 
-* `description` is concise and intended for quick UI help or AI assistance.
-* `enum_options` is a map of **key → human label**; keep `type` consistent with the key type (e.g., `"string"` for sampler names).
-* `binds_to` must match exactly one token inside the `workflow` graph.
+**Required Fields:**
+- `name`: Human-readable variable name displayed in UI
+- `type`: Variable data type (`"int"`, `"float"`, `"bool"`, or `"string"`)
+- `description`: Brief explanation for UI tooltips and AI assistance
+- `default`: Default value that must match the specified type
+- `binds_to`: Exact token in the workflow graph to replace (e.g., `"__STEPS__"`)
+
+**Optional Fields:**
+- `min`/`max`: Value constraints for numeric types (`int`, `float`)
+- `step`: Increment size for numeric inputs (defaults: int=1, float=0.1)
+- `enum_options`: Dropdown options as key→label pairs (overrides min/max/step)
+
+### Examples by Type
+
+**Integer Variable:**
+```json
+{
+  "name": "Sampling Steps",
+  "type": "int",
+  "description": "Number of denoising steps for image generation.",
+  "default": 30,
+  "binds_to": "__STEPS__",
+  "min": 10,
+  "max": 100,
+  "step": 5
+}
+```
+
+**Float Variable:**
+```json
+{
+  "name": "CFG Scale",
+  "type": "float", 
+  "description": "Classifier-free guidance scale for prompt adherence.",
+  "default": 7.5,
+  "binds_to": "__CFG_SCALE__",
+  "min": 1.0,
+  "max": 20.0,
+  "step": 0.5
+}
+```
+
+**Boolean Variable:**
+```json
+{
+  "name": "High Resolution",
+  "type": "bool",
+  "description": "Enable high-resolution image generation.",
+  "default": false,
+  "binds_to": "__HIGH_RES__"
+}
+```
+
+**String Variable with Enum Options:**
+```json
+{
+  "name": "Sampler Method",
+  "type": "string",
+  "description": "Algorithm used for denoising process.",
+  "default": "euler",
+  "binds_to": "__SAMPLER__",
+  "enum_options": {
+    "euler": "Euler - Fast and stable",
+    "ddim": "DDIM - Deterministic sampling", 
+    "dpmpp_2m": "DPM++ 2M - High quality",
+    "heun": "Heun - Improved accuracy"
+  }
+}
+```
+
+### Key Points
+
+* **Type Consistency**: The `default` value and `enum_options` keys must match the declared `type`
+* **Token Matching**: Each `binds_to` token must appear exactly once in the `workflow` graph
+* **Range Validation**: Values are automatically clamped to `min`/`max` bounds when set
+* **UI Generation**: The UI automatically creates appropriate controls (sliders, dropdowns, checkboxes) based on the variable configuration
+* **State Persistence**: Variable values are saved in render results and restored when loading
+
+### Validation Rules
+
+1. **Required fields** must be present and non-empty
+2. **Type validation**: `default` value must be convertible to the specified `type`
+3. **Range validation**: If `min`/`max` are specified, `default` must be within bounds
+4. **Token uniqueness**: Each `binds_to` token must be unique across all variables
+5. **Enum consistency**: When `enum_options` is provided, `default` must be one of the keys
 
 ---
 
