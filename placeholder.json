@@ -74,9 +74,10 @@
       "name": "Seed Offset",
       "key": "__SEED_OFFSET__",
       "type": "int",
-      "description": "Offset added to the base seed (no default; min/max set).",
+      "description": "Offset added to the base seed (min/max set).",
       "min": -100,
       "max": 100,
+      "default": 50,
       "binds_to": "__SEED_OFFSET__"
     },
     {
@@ -97,14 +98,16 @@
       "name": "Notes",
       "key": "__NOTES__",
       "type": "string",
-      "description": "Freeform notes (no default).",
+      "default": "",
+      "description": "Freeform notes.",
       "binds_to": "__NOTES__"
     },
     {
       "name": "Use Style Image",
       "key": "__USE_STYLE_IMAGE__",
       "type": "bool",
-      "description": "Toggle to enable style image when available (no default).",
+      "default": true,
+      "description": "Toggle to enable style image when available",
       "binds_to": "__USE_STYLE_IMAGE__"
     },
     {
