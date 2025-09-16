@@ -111,19 +111,21 @@ Variables expose parameters that can be tuned at runtime and substituted directl
 ```json
 {
   "name": "Sampling Steps",                    // REQUIRED: Human-readable name
-  "type": "int",                              // REQUIRED: int | float | bool | string
+  "type": "int",                               // REQUIRED: int | float | bool | string
+  "is_basic": false                            // OPTIONAL: Flag for UI mode; default = true if missing
   "description": "Number of denoising steps.", // REQUIRED: Concise description for UI help
-  "default": 30,                              // REQUIRED: Default value (must match type)
-  "binds_to": "__STEPS__",                    // REQUIRED: Token to replace in workflow
-  "min": 10,                                  // OPTIONAL: Minimum value (int/float only)
-  "max": 100,                                 // OPTIONAL: Maximum value (int/float only)
-  "step": 1,                                  // OPTIONAL: Step size (int/float only)
-  "enum_options": {                           // OPTIONAL: Key-value pairs for dropdowns
+  "default": 30,                               // REQUIRED: Default value (must match type)
+  "binds_to": "__STEPS__",                     // REQUIRED: Token to replace in workflow
+  "min": 10,                                   // OPTIONAL: Minimum value (int/float only)
+  "max": 100,                                  // OPTIONAL: Maximum value (int/float only)
+  "step": 1,                                   // OPTIONAL: Step size (int/float only)
+  "enum_options": {                            // OPTIONAL: Key-value pairs for dropdowns
     "euler": "Euler sampler",
-    "ddim": "DDIM sampler", 
+    "ddim": "DDIM sampler",
     "dpmpp_2m": "DPM++ 2M sampler"
-  }
+  },
 }
+
 ```
 
 ### Field Details
@@ -136,6 +138,7 @@ Variables expose parameters that can be tuned at runtime and substituted directl
 - `binds_to`: Exact token in the workflow graph to replace (e.g., `"__STEPS__"`)
 
 **Optional Fields:**
+- `is_basic`: boolean flag that indicates whether this variable should appear in the UI’s basic panel. If not present, defaults to true. Set to false to group it under advanced/expert controls.
 - `min`/`max`: Value constraints for numeric types (`int`, `float`)
 - `step`: Increment size for numeric inputs (defaults: int=1, float=0.1)
 - `enum_options`: Dropdown options as key→label pairs (overrides min/max/step)
@@ -148,6 +151,7 @@ Variables expose parameters that can be tuned at runtime and substituted directl
   "name": "Sampling Steps",
   "type": "int",
   "description": "Number of denoising steps for image generation.",
+  "is_basic": true,
   "default": 30,
   "binds_to": "__STEPS__",
   "min": 10,
@@ -162,6 +166,7 @@ Variables expose parameters that can be tuned at runtime and substituted directl
   "name": "CFG Scale",
   "type": "float", 
   "description": "Classifier-free guidance scale for prompt adherence.",
+  "is_basic": false,
   "default": 7.5,
   "binds_to": "__CFG_SCALE__",
   "min": 1.0,
@@ -176,6 +181,7 @@ Variables expose parameters that can be tuned at runtime and substituted directl
   "name": "High Resolution",
   "type": "bool",
   "description": "Enable high-resolution image generation.",
+  "is_basic": true,
   "default": false,
   "binds_to": "__HIGH_RES__"
 }
