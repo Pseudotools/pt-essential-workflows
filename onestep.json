@@ -34,11 +34,11 @@
     },
     {
       "name": "Mask Softness",
-      "type": "float",
+      "type": "int",
       "description": "How much to 'soften' material prompt masks—softer masks apply to wider areas; harder ones are more constrained.",
-      "default": 0.9,
-      "min": 0.0,
-      "max": 1.0,
+      "default": 1,
+      "min": 0,
+      "max": 10,
       "binds_to": "__MASK_SOFTNESS__"
     },
     {
@@ -63,7 +63,16 @@
         "heun": "honey"
       },
       "binds_to": "__SAMPLER__"
-    }
+    },
+    {
+      "name": "Enable High Resolution",
+      "key": "__HIGH_RES__",
+      "type": "bool",
+      "description": "Enable high-resolution image generation.",
+      "is_basic": false,
+      "default": true,
+      "binds_to": "__HIGH_RES__"
+    }    
   ],
 
   "endpoint_requirements": {
