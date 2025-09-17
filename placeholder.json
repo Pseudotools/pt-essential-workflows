@@ -6,20 +6,20 @@
   "pseudorandom_workflow_schema_version": 0.2,
 
   "global_guidance_capabilities": {
-    "txt_scene": "optional",
-    "txt_style": "optional",
-    "txt_negative": "optional",
-    "img_style": "optional"
+    "txt_scene": true,
+    "txt_style": false,
+    "txt_negative": true,
+    "img_style": true
   },
 
   "regional_guidance_capabilities": {
-    "text": "optional",
-    "image": "optional"
+    "text": true,
+    "image": true
   },
 
   "spatial_guidance_capabilities": {
-    "depth": "optional",
-    "edge": "optional"
+    "depth": true,
+    "edge": true
   },
 
   "variables": [
