@@ -48,10 +48,10 @@ These correspond to the `global_guidance` object in a snapshot.
 
 ```json
 "global_guidance_capabilities": {
-  "txt_scene":    "required" | "optional" | "unsupported",
-  "txt_style":    "required" | "optional" | "unsupported",
-  "txt_negative": "required" | "optional" | "unsupported",
-  "img_style":    "required" | "optional" | "unsupported"
+  "txt_scene":    true | false,
+  "txt_style":    true | false,
+  "txt_negative": true | false,
+  "img_style":    true | false
 }
 ````
 
@@ -68,15 +68,15 @@ These correspond to the `regional_guidance` array in a snapshot.
 
 ```json
 "regional_guidance_capabilities": {
-  "text":  "required" | "optional" | "unsupported",
-  "image": "required" | "optional" | "unsupported"
+  "text":  true | false,
+  "image": true | false
 }
 ```
 
 * **text** – region-specific material or object prompts.
 * **image** – region-specific reference images.
 
-Masks are implicitly required for every regional prompt and do not need to be declared.
+At least one of these capabilities must be `true`. Masks are implicitly required for every regional prompt and do not need to be declared.
 
 ---
 
