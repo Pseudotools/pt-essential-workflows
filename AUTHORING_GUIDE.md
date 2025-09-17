@@ -86,13 +86,13 @@ These correspond to the `spatial_guidance` object in a snapshot.
 
 ```json
 "spatial_guidance_capabilities": {
-  "depth": "required" | "optional" | "unsupported",
-  "edge":  "required" | "optional" | "unsupported"
+  "depth": true,
+  "edge":  false
 }
 ```
 
-* **depth** – grayscale depth map for geometry guidance.
-* **edge** – edge or linework map for contour guidance.
+* **depth** – `true` if the workflow can consume a grayscale depth map for geometry guidance, false otherwise.
+* **edge** – `true` if the workflow can consume an edge or linework map for contour guidance, false otherwise.
 * *(future keys)* – additional model-derived maps such as `normal`, `albedo`, etc., may be added later following the same pattern.
 
 Runners use this section to:
