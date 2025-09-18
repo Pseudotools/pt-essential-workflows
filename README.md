@@ -52,13 +52,12 @@ A single minimal manifest describing the library:
 {
   "schema_version": "0.2",
   "name": "Pseudotools Essential Workflows",
-  "visibility": "public",
   "description": "Core workflows and prompt presets for architectural rendering."
 }
 ```
 
 * **schema\_version** must match the `pseudorandom_workflow_scheme_version` inside every workflow file.
-* **name**, **visibility**, and **description** provide basic metadata for UIs and loaders.
+* **name** and **description** provide basic metadata for UIs and loaders.
 * No internal ID field is needed—IDs are derived from filenames.
 
 ### Workflows
