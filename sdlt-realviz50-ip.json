@@ -1,49 +1,67 @@
 {
-    "id": "sdlt-realviz50-ip",
-    "type": "comfy",
-    "name": "Lumen",
-    "description": "Basic SD Hyper model and 'ip-adpater' style regional prompting that handles image prompts.",
-    "pseudorandom_workflow_scheme_version": 0.1,
-    "pseudocomfy_version": "2.0.9",
-    "variables": [
-        {
-            "name": "Adherence",
-            "key": "__ADHERENCE__",
-            "type": "float",
-            "default": 0.8,
-            "range": [0.0,1.0],
-            "description": "How much to follow model geometry via ControlNet depth."
-        },
-        {
-            "name": "Mask Softness",
-            "key": "__MASK_SOFTNESS__",
-            "type": "float",
-            "default": 0.9,
-            "range": [0.0,1.0],
-            "description": "How much to 'soften' material prompt masks - softer masks apply to wider areas, harder ones are more constrained."
-        }
+  "pseudorandom_workflow_schema_version": 0.2,
+  "type": "comfy",
+  "name": "Lumen",
+  "description": "Basic SD Hyper model and 'ip-adapter' style regional prompting that handles image prompts.",
+
+  "global_guidance_capabilities": {
+    "txt_scene": true,
+    "txt_style": true,
+    "txt_negative": true,
+    "img_style": true
+  },
+
+  "regional_guidance_capabilities": {
+    "text": true,
+    "image": true
+  },
+
+  "spatial_guidance_capabilities": {
+    "depth": true,
+    "edge": false
+  },
+
+  "variables": [
+    {
+      "name": "Adherence",
+      "type": "float",
+      "description": "How much to follow model geometry via ControlNet depth.",
+      "default": 0.8,
+      "binds_to": "__ADHERENCE__",
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05
+    },
+    {
+      "name": "Mask Softness",
+      "type": "float",
+      "description": "How much to soften material prompt masks—softer masks apply to wider areas; harder ones are more constrained.",
+      "default": 0.9,
+      "binds_to": "__MASK_SOFTNESS__",
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05
+    }
+  ],
+
+  "endpoint_requirements": {
+    "checkpoints": [
+      "realvisxlV50_v50LightningBakedvae.safetensors"
     ],
-    "endpoint_requirements" : {
-        "checkpoints": [
-            "realvisxlV50_v50LightningBakedvae.safetensors"
-        ],
-        "custom_nodes": [
-            "pseudocomfy"
-        ],
-        "controlnet": [
-            "control-lora-depth-rank128.safetensors"
-        ],
-        "ipadapter": [
-            "ip-adapter-plus_sdxl_vit-h.safetensors"
-        ],
-        "clip_vision": [
-            "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
-        ]
-    },
-    "prompt_requirements": {
-            "image": true,
-            "text": true
-    },
+    "custom_nodes": [
+      "pseudocomfy"
+    ],
+    "controlnet": [
+      "control-lora-depth-rank128.safetensors"
+    ],
+    "ipadapter": [
+      "ip-adapter-plus_sdxl_vit-h.safetensors"
+    ],
+    "clip_vision": [
+      "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    ]
+  },
+
     "workflow": {
   "1": {
     "inputs": {

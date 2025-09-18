@@ -1,52 +1,72 @@
 {
-    "id": "sdhy-jnaut10-dd-refined",
-    "type": "comfy",
-    "name": "Henriette",
-    "description": "SD Hyper model with two-phase refinement architecture and 'dense diffusion' style regional prompting.",
-    "pseudorandom_workflow_scheme_version": 0.1,
-    "pseudocomfy_version": "2.0.9",
-    "variables": [
-        {
-            "name": "Iteration",
-            "key": "__ITERATION__",
-            "type": "float",
-            "default": 0.75,
-            "range": [0.0,1.0],
-            "description": "How many 'steps' to take to produce the render - more steps take more time, but results in a more refined render."
-        },      
-        {
-            "name": "Adherence",
-            "key": "__ADHERENCE__",
-            "type": "float",
-            "default": 0.8,
-            "range": [0.0,1.0],
-            "description": "How much to follow model geometry via ControlNet depth."
-        },
-        {
-            "name": "Mask Softness",
-            "key": "__MASK_SOFTNESS__",
-            "type": "float",
-            "default": 0.9,
-            "range": [0.0,1.0],
-            "description": "How much to 'soften' material prompt masks - softer masks apply to wider areas, harder ones are more constrained."
-        }
+  "pseudorandom_workflow_schema_version": 0.2,
+  "type": "comfy",
+  "name": "Henriette",
+  "description": "SD Hyper model with two-phase refinement architecture and 'dense diffusion' style regional prompting.",
+
+  "global_guidance_capabilities": {
+    "txt_scene": true,
+    "txt_style": true,
+    "txt_negative": true,
+    "img_style": false
+  },
+
+  "regional_guidance_capabilities": {
+    "text": true,
+    "image": false
+  },
+
+  "spatial_guidance_capabilities": {
+    "depth": true,
+    "edge": false
+  },
+
+  "variables": [
+    {
+      "name": "Iteration",
+      "type": "float",
+      "description": "How many steps to take to produce the render—more steps take more time but result in a more refined render.",
+      "default": 0.75,
+      "binds_to": "__ITERATION__",
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05
+    },
+    {
+      "name": "Adherence",
+      "type": "float",
+      "description": "How much to follow model geometry via ControlNet depth.",
+      "default": 0.8,
+      "binds_to": "__ADHERENCE__",
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05
+    },
+    {
+      "name": "Mask Softness",
+      "type": "float",
+      "description": "How much to soften material prompt masks—softer masks apply to wider areas; harder ones are more constrained.",
+      "default": 0.9,
+      "binds_to": "__MASK_SOFTNESS__",
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05
+    }
+  ],
+
+  "endpoint_requirements": {
+    "checkpoints": [
+      "Juggernaut_X_RunDiffusion_Hyper.safetensors",
+      "sd_xl_refiner_1.0.safetensors"
     ],
-    "endpoint_requirements" : {
-        "checkpoints": [
-            "Juggernaut_X_RunDiffusion_Hyper.safetensors",
-            "sd_xl_refiner_1.0.safetensors"
-        ],
-        "custom_nodes": [
-            "pseudocomfy"
-        ],
-        "controlnet": [
-            "control-lora-depth-rank128.safetensors"
-        ]
-    },
-    "prompt_requirements": {
-            "image": false,
-            "text": true
-    },
+    "custom_nodes": [
+      "pseudocomfy"
+    ],
+    "controlnet": [
+      "control-lora-depth-rank128.safetensors"
+    ]
+  },
+
     "workflow": {
   "1": {
     "inputs": {
