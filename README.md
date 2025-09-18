@@ -30,7 +30,7 @@ pt-essential-workflows/
 ├─ LIBRARY.json                 # minimal library manifest
 ├─ <workflow-a>.json            # individual workflows (one per file)
 ├─ <workflow-b>.json
-├─ environmental_prompts/
+├─ global_guidance/
 │  ├─ scene_text.json           # key → string scene prompts
 │  ├─ style_text.json           # key → string style prompts
 │  ├─ negative_text.json        # key → string negative prompts
@@ -38,7 +38,7 @@ pt-essential-workflows/
 │     ├─ portra-800.jpg
 │     ├─ cine-sky.png
 │     └─ ...
-└─ material_prompts/
+└─ regional_guidanc/
    ├─ oak-plank.json            # each material is a single JSON file
    ├─ brushed-aluminum.json
    └─ ...
@@ -52,13 +52,12 @@ A single minimal manifest describing the library:
 {
   "schema_version": "0.2",
   "name": "Pseudotools Essential Workflows",
-  "visibility": "public",
   "description": "Core workflows and prompt presets for architectural rendering."
 }
 ```
 
 * **schema\_version** must match the `pseudorandom_workflow_scheme_version` inside every workflow file.
-* **name**, **visibility**, and **description** provide basic metadata for UIs and loaders.
+* **name** and **description** provide basic metadata for UIs and loaders.
 * No internal ID field is needed—IDs are derived from filenames.
 
 ### Workflows
@@ -70,14 +69,14 @@ A single minimal manifest describing the library:
   * `__PSEUDORANDOM_TEMP_PATH__`
   * `__PSEUDORANDOM_SEED__`
 
-### Environmental Prompts
+### Global Guidance
 
-* `environmental_prompts/scene_text.json`, `environmental_prompts/style_text.json`, and `environmental_prompts/negative_text.json` are simple **key → string** maps of reusable prompt options.
-* `environmental_prompts/style_image/` holds reference images; the **filename without extension** acts as the key.
+* `global_guidance/scene_text.json`, `global_guidance/style_text.json`, and `global_guidance/negative_text.json` are simple **key → string** maps of reusable prompt options.
+* `global_guidance/style_image/` holds reference images; the **filename without extension** acts as the key.
 
-### Materials
+### Regional Guidance
 
-* Each file in `material_prompts/` represents a single material and may contain:
+* Each file in `regional_guidance/` represents a single material and may contain:
 
   ```json
   {
