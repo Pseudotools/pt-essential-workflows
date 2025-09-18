@@ -38,7 +38,7 @@ pt-essential-workflows/
 │     ├─ portra-800.jpg
 │     ├─ cine-sky.png
 │     └─ ...
-└─ regional_guidanc/
+└─ regional_guidance/
    ├─ oak-plank.json            # each material is a single JSON file
    ├─ brushed-aluminum.json
    └─ ...
