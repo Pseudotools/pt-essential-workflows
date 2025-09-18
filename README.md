@@ -81,6 +81,7 @@ A single minimal manifest describing the library:
 
   ```json
   {
+    "schema_version": "0.2",       // same as library schema for now
     "name": "White Oak Plank",
     "text": "white oak planks, matte finish, tight grain",
     "image_base64": null,          // optional embedded reference image
