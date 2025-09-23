@@ -31,9 +31,7 @@ pt-essential-workflows/
 ├─ <workflow-a>.json            # individual workflows (one per file)
 ├─ <workflow-b>.json
 ├─ global_guidance/
-│  ├─ scene_text.json           # key → string scene prompts
-│  ├─ style_text.json           # key → string style prompts
-│  ├─ negative_text.json        # key → string negative prompts
+│  ├─ prompt_library.json       # consolidated prompt definitions
 │  └─ style_image/              # reference images; filenames are the keys
 │     ├─ portra-800.jpg
 │     ├─ cine-sky.png
@@ -64,15 +62,53 @@ A single minimal manifest describing the library:
 
 * Each `*.json` file at the repository root is a complete workflow.
 * Workflows follow the **v0.2 workflow schema** with optional `thumbnail` and `rank_order` fields.
-* Only two reserved tokens are available inside each workflow’s ComfyUI graph:
+* Only two reserved tokens are available inside each workflow's ComfyUI graph:
 
   * `__PSEUDORANDOM_TEMP_PATH__`
   * `__PSEUDORANDOM_SEED__`
 
 ### Global Guidance
 
-* `global_guidance/scene_text.json`, `global_guidance/style_text.json`, and `global_guidance/negative_text.json` are simple **key → string** maps of reusable prompt options.
+* `global_guidance/prompt_library.json` is a **consolidated prompt library** containing:
+  * **defaults**: Default fallback values for scene, style, and negative prompts
+  * **scene**: Key → string mappings for scene prompt options
+  * **style**: Key → string mappings for style prompt options  
+  * **negative**: Key → string mappings for negative prompt options
 * `global_guidance/style_image/` holds reference images; the **filename without extension** acts as the key.
+
+
+#### Sample Prompt Library File
+```
+{
+  "schema_version": "0.2",
+  "defaults": {
+    "scene": "some things in a place",
+    "style": "high quality, professional product photography, high detail, perfect lighting",
+    "negative": "blurry, low quality, distorted, low detail, bad lighting, jpeg artifacts"
+  },
+  "scene": {
+    "architectural": "modern architectural visualization with clean lines and geometric forms",
+    "interior": "interior architectural photography with natural lighting and clean composition",
+    "exterior": "exterior building photography with dramatic lighting and urban context",
+    "detail": "architectural detail photography highlighting materials and craftsmanship"
+  },
+  "style": {
+    "photorealistic": "photorealistic architectural rendering, high detail, professional photography",
+    "artistic": "artistic architectural visualization with creative lighting and composition",
+    "technical": "technical architectural drawing style with precise lines and annotations",
+    "sketch": "architectural sketch style with hand-drawn aesthetic and loose lines"
+  },
+  "negative": {
+    "quality": "blurry, low quality, distorted, low detail, bad lighting, jpeg artifacts",
+    "style": "cartoon, sketch, painting, illustration, non-photorealistic",
+    "composition": "poor composition, awkward framing, cluttered, messy",
+    "technical": "rendering artifacts, compression artifacts, noise, grain"
+  }
+}
+
+
+```
+
 
 ### Regional Guidance
 
@@ -102,3 +138,16 @@ A single minimal manifest describing the library:
 ## License
 
 This library is released under the **MIT License**, allowing both commercial and non-commercial use.
+
+---
+
+## Benefits of the New Structure
+
+1. **Single Source of Truth**: All prompt definitions in one file
+2. **Clear Defaults**: Explicit default values for each prompt type
+3. **Organized Categories**: Logical grouping of prompt options
+4. **Easier Maintenance**: One file to update instead of three
+5. **Better Versioning**: Single file to track changes to prompt library
+6. **Simpler Loading**: Library manager only needs to parse one JSON file
+
+This structure will make it much easier to manage prompt libraries and provide a cleaner API for the LibraryManager to consume.
