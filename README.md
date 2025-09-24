@@ -69,45 +69,83 @@ A single minimal manifest describing the library:
 
 ### Global Guidance
 
-* `global_guidance/prompt_library.json` is a **consolidated prompt library** containing:
-  * **defaults**: Keys that represent fallback values for scene, style, and negative prompts. Refers to Keys in the scene, style, and negative ditcs respectively. If this dict is missing (or any keys are missing or do not match dicts below), the first value found in each catetory is used.
-  * **scene**: Key → string mappings for scene prompt options
-  * **style**: Key → string mappings for style prompt options  
-  * **negative**: Key → string mappings for negative prompt options
-* `global_guidance/style_image/` holds reference images; the **filename without extension** acts as the key.
 
+Global guidance is now defined **outside individual workflow schemes** in a single consolidated prompt library.
+This supports consistent scene, style, and negative prompts across all workflows and makes it easier to maintain and extend prompt sets.
+
+#### Files & Folders
+
+* **`global_guidance/prompt_library.json`**
+  The main prompt library file. It contains:
+
+  * **`schema_version`** – Version of this prompt library schema (e.g. `"0.2"`).
+  * **`defaults`** – Fallback selections for each category.
+
+    * Each key (`scene`, `style`, `negative`, `style_image`) must match an item in the corresponding array (or filename for `style_image`).
+    * If a key is missing or does not match, the **first element** of the array or directory is used instead.
+  * **`scene`** – Array of objects with `name` and `prompt` defining scene prompt options.
+  * **`style`** – Array of objects with `name` and `prompt` defining style prompt options.
+  * **`negative`** – Array of objects with `name` and `prompt` defining negative prompt options.
+
+* **`global_guidance/style_image/`**
+  Folder of reference images used for style conditioning.
+
+  * The **filename without extension** serves as the key (e.g. `solarpunk.jpg` → `"solarpunk"`).
+  * The default style image is set in the `defaults.style_image` field.
+
+---
 
 #### Sample Prompt Library File
-```
+
+```json
 {
   "schema_version": "0.2",
   "defaults": {
-    "scene": "architectural",
-    "style": "photorealistic",
-    "negative": "composition"
+    "scene": "third",
+    "style": "quattro",
+    "negative": "sure",
+    "style_image": "solarpunk.jpg"
   },
-  "scene": {
-    "architectural": "modern architectural visualization with clean lines and geometric forms",
-    "interior": "interior architectural photography with natural lighting and clean composition",
-    "exterior": "exterior building photography with dramatic lighting and urban context",
-    "detail": "architectural detail photography highlighting materials and craftsmanship"
-  },
-  "style": {
-    "photorealistic": "photorealistic architectural rendering, high detail, professional photography",
-    "artistic": "artistic architectural visualization with creative lighting and composition",
-    "technical": "technical architectural drawing style with precise lines and annotations",
-    "sketch": "architectural sketch style with hand-drawn aesthetic and loose lines"
-  },
-  "negative": {
-    "quality": "blurry, low quality, distorted, low detail, bad lighting, jpeg artifacts",
-    "style": "cartoon, sketch, painting, illustration, non-photorealistic",
-    "composition": "poor composition, awkward framing, cluttered, messy",
-    "technical": "rendering artifacts, compression artifacts, noise, grain"
-  }
+  "scene": [
+    {"name": "Goto", "prompt": "modern architectural visualization with clean lines and geometric forms"},
+    {"name": "Farm", "prompt": "a photo of a farm with a barn, silo, and fields"},
+    {"name": "City", "prompt": "a photo of a city skyline with tall buildings and busy streets"},
+    {"name": "Beach", "prompt": "a photo of a beach with sand, ocean, and palm trees"},
+    {"name": "First And Longest", "prompt": "a photo of a wild kid's birthday party with balloons, cake, and presents"},
+    {"name": "Second", "prompt": "zoo animals gone wild, running amok"},
+    {"name": "Third", "prompt": "objects in liminal space"},
+    {"name": "Fourth", "prompt": "a surreal dreamscape with floating islands and impossible architecture"},
+    {"name": "Fifth", "prompt": "a futuristic cityscape at sunset with flying cars and neon lights"},
+    {"name": "Sixth", "prompt": "a cozy cabin in the woods during a snowstorm"},
+    {"name": "Seventh", "prompt": "a bustling marketplace in a fantasy world with colorful stalls and exotic goods"},
+    {"name": "Eighth", "prompt": "a serene beach at sunrise with gentle waves and palm trees"},
+    {"name": "Ninth", "prompt": "a majestic mountain range with a crystal-clear lake in the foreground"},
+    {"name": "Tenth", "prompt": "a vibrant coral reef teeming with marine life"},
+    {"name": "Eleventh", "prompt": "a magical forest with glowing plants and mythical creatures"},
+    {"name": "Twelfth", "prompt": "a post-apocalyptic wasteland with abandoned buildings and overgrown vegetation"}
+  ],
+  "style": [
+    {"name": "Uno", "prompt": "cotton candy colors, whimsical and playful"},
+    {"name": "Due", "prompt": "french baroque style with ornate details and luxurious textures"},
+    {"name": "Twa", "prompt": "lush hobbitseque greenery with rustic wooden elements"},
+    {"name": "Quattro", "prompt": "kodachrome film still, 1976"}
+  ],
+  "negative": [
+    {"name": "Sure", "prompt": "poor, low res, just nasty"},
+    {"name": "One", "prompt": "low res, poorly drawn, deformed, blurry"},
+    {"name": "Two", "prompt": "unrealistic, cartoonish, low res, poorly drawn, deformed, blurry"}
+  ]
 }
-
-
 ```
+
+
+#### Authoring Guidelines
+
+* Each `name` is the **display key** for UI selection and must be unique within its category.
+* Prompts should be concise but descriptive, as they are directly injected into text-to-image models.
+* When adding a new style image, place it in `style_image/` and reference the filename (without extension) in `defaults.style_image` if it should be the fallback.
+
+
 
 
 ### Regional Guidance
