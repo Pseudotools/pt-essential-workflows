@@ -101,28 +101,16 @@ This supports consistent scene, style, and negative prompts across all workflows
 {
   "schema_version": "0.2",
   "defaults": {
-    "scene": "third",
-    "style": "quattro",
-    "negative": "sure",
+    "scene": "Beach",
+    "style": "Quattro",
+    "negative": "Sure",
     "style_image": "solarpunk.jpg"
   },
   "scene": [
     {"name": "Goto", "prompt": "modern architectural visualization with clean lines and geometric forms"},
     {"name": "Farm", "prompt": "a photo of a farm with a barn, silo, and fields"},
     {"name": "City", "prompt": "a photo of a city skyline with tall buildings and busy streets"},
-    {"name": "Beach", "prompt": "a photo of a beach with sand, ocean, and palm trees"},
-    {"name": "First And Longest", "prompt": "a photo of a wild kid's birthday party with balloons, cake, and presents"},
-    {"name": "Second", "prompt": "zoo animals gone wild, running amok"},
-    {"name": "Third", "prompt": "objects in liminal space"},
-    {"name": "Fourth", "prompt": "a surreal dreamscape with floating islands and impossible architecture"},
-    {"name": "Fifth", "prompt": "a futuristic cityscape at sunset with flying cars and neon lights"},
-    {"name": "Sixth", "prompt": "a cozy cabin in the woods during a snowstorm"},
-    {"name": "Seventh", "prompt": "a bustling marketplace in a fantasy world with colorful stalls and exotic goods"},
-    {"name": "Eighth", "prompt": "a serene beach at sunrise with gentle waves and palm trees"},
-    {"name": "Ninth", "prompt": "a majestic mountain range with a crystal-clear lake in the foreground"},
-    {"name": "Tenth", "prompt": "a vibrant coral reef teeming with marine life"},
-    {"name": "Eleventh", "prompt": "a magical forest with glowing plants and mythical creatures"},
-    {"name": "Twelfth", "prompt": "a post-apocalyptic wasteland with abandoned buildings and overgrown vegetation"}
+    {"name": "Beach", "prompt": "a photo of a beach with sand, ocean, and palm trees"}
   ],
   "style": [
     {"name": "Uno", "prompt": "cotton candy colors, whimsical and playful"},
