@@ -3,7 +3,8 @@
   "defaults": {
     "scene": "goto",
     "style": "product photography",
-    "negative": "standard"
+    "negative": "standard",
+    "style_image": "90's manhattan"
   },
   "scene": {
     "goto": "modern architectural visualization with clean lines and geometric forms",
