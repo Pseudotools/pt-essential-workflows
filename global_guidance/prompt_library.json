@@ -6,12 +6,7 @@
     "negative": "standard",
     "style_image": "90's manhattan"
   },
-  "scene": {
-    "goto": "modern architectural visualization with clean lines and geometric forms",
-    "farm": "a photo of a farm with a barn, silo, and fields",
-    "city": "a photo of a city skyline with tall buildings and busy streets",
-    "beach": "a photo of a beach with sand, ocean, and palm trees"
-  },
+  "scene": { },
   "style": {
     "product photography": "professional product photography, high detail, perfect lighting",
     "minimal": "a minimalistic style with clean lines and simple shapes",
