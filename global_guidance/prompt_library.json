@@ -1,21 +1,41 @@
 {
   "schema_version": "0.2",
   "defaults": {
-    "scene": "goto",
-    "style": "product photography",
-    "negative": "standard",
+    "style": "Product Photography",
+    "negative": "Standard",
     "style_image": "90's manhattan"
   },
-  "scene": { },
-  "style": {
-    "product photography": "professional product photography, high detail, perfect lighting",
-    "minimal": "a minimalistic style with clean lines and simple shapes",
-    "baroque interior": "ornate details, rich colors, and luxurious furnishings",
-    "florida keys": "a tropical style with bright colors, palm trees, and beachy vibes"
-  },
-  "negative": {
-    "standard": "low res, poorly drawn, deformed, blurry",
-    "photorealistic": "unrealistic, cartoonish, low res, poorly drawn, deformed, blurry",
-    "anti-artifacts": "jpeg artifacts, low res, poorly drawn, deformed, blurry"
-  }
+  "scene": [],
+  "style": [
+    {
+      "name": "Product Photography",
+      "prompt": "professional product photography, high detail, perfect lighting"
+    },
+    {
+      "name": "Minimal",
+      "prompt": "a minimalistic style with clean lines and simple shapes"
+    },
+    {
+      "name": "Baroque Interior",
+      "prompt": "ornate details, rich colors, and luxurious furnishings"
+    },
+    {
+      "name": "Florida Keys",
+      "prompt": "a tropical style with bright colors, palm trees, and beachy vibes"
+    }
+  ],
+  "negative": [
+    {
+      "name": "Standard",
+      "prompt": "low res, poorly drawn, deformed, blurry"
+    },
+    {
+      "name": "Photorealistic",
+      "prompt": "unrealistic, cartoonish, low res, poorly drawn, deformed, blurry"
+    },
+    {
+      "name": "Anti-artifacts",
+      "prompt": "jpeg artifacts, low res, poorly drawn, deformed, blurry"
+    }
+  ]
 }
