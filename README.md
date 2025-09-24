@@ -70,7 +70,7 @@ A single minimal manifest describing the library:
 ### Global Guidance
 
 * `global_guidance/prompt_library.json` is a **consolidated prompt library** containing:
-  * **defaults**: Default fallback values for scene, style, and negative prompts
+  * **defaults**: Keys that represent fallback values for scene, style, and negative prompts. Refers to Keys in the scene, style, and negative ditcs respectively. If this dict is missing (or any keys are missing or do not match dicts below), the first value found in each catetory is used.
   * **scene**: Key → string mappings for scene prompt options
   * **style**: Key → string mappings for style prompt options  
   * **negative**: Key → string mappings for negative prompt options
@@ -82,9 +82,9 @@ A single minimal manifest describing the library:
 {
   "schema_version": "0.2",
   "defaults": {
-    "scene": "some things in a place",
-    "style": "high quality, professional product photography, high detail, perfect lighting",
-    "negative": "blurry, low quality, distorted, low detail, bad lighting, jpeg artifacts"
+    "scene": "architectural",
+    "style": "photorealistic",
+    "negative": "composition"
   },
   "scene": {
     "architectural": "modern architectural visualization with clean lines and geometric forms",
