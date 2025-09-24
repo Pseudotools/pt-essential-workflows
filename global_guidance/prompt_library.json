@@ -1,16 +1,18 @@
 {
   "schema_version": "0.2",
   "defaults": {
-    "scene": "modern architectural visualization with clean lines and geometric forms",
-    "style": "professional product photography, high detail, perfect lighting",
-    "negative": "low detail, bad lighting, jpeg artifacts"
+    "scene": "goto",
+    "style": "product photography",
+    "negative": "standard"
   },
   "scene": {
+    "goto": "modern architectural visualization with clean lines and geometric forms",
     "farm": "a photo of a farm with a barn, silo, and fields",
     "city": "a photo of a city skyline with tall buildings and busy streets",
     "beach": "a photo of a beach with sand, ocean, and palm trees"
   },
   "style": {
+    "product photography": "professional product photography, high detail, perfect lighting",
     "minimal": "a minimalistic style with clean lines and simple shapes",
     "baroque interior": "ornate details, rich colors, and luxurious furnishings",
     "florida keys": "a tropical style with bright colors, palm trees, and beachy vibes"
