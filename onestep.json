@@ -1,6 +1,6 @@
 {
   "type": "comfy",
-  "name": "TEST",
+  "name": "Unit Test",
   "description": "a workflow locked to one step for testing purposes",
 
   "pseudorandom_workflow_schema_version": 0.2,
