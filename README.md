@@ -177,3 +177,21 @@ This library is released under the **MIT License**, allowing both commercial and
 6. **Simpler Loading**: Library manager only needs to parse one JSON file
 
 This structure will make it much easier to manage prompt libraries and provide a cleaner API for the LibraryManager to consume.
+
+
+
+# Test
+
+## Henriette
+todo
+## Hugo
+todo
+## Lisette
+todo
+## Lumen
+todo
+
+
+
+
+
