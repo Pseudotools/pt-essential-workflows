@@ -3,6 +3,11 @@
     "name": "Unit Test",
     "description": "a workflow locked to one step for testing purposes",
     "pseudorandom_workflow_schema_version": 0.3,
+    "attribution": {
+      "author": "Pseudotools",
+      "author_url": "https://github.com/pseudotools",
+      "license": "GNU General Public License v3.0"
+    },    
     "global_guidance_capabilities": {
         "txt_scene": true,
         "txt_style": true,

@@ -3,6 +3,11 @@
   "name": "[human_readable_name_for_display]",
   "description": "[workflow description]",
   "pseudorandom_workflow_schema_version": 0.3,
+  "attribution": {
+    "author": "[author_name]",
+    "author_url": "[author_github_or_other_url]",
+    "license": "[license, e.g. GNU General Public License v3.0]"
+  },  
   "global_guidance_capabilities": {
     "txt_scene": true,
     "txt_style": true,
