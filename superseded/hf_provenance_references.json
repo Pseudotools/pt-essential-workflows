@@ -1,0 +1,255 @@
+[
+  {
+    "category": "checkpoints",
+    "requirement": "Juggernaut_X_RunDiffusion_Hyper.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/Juggernaut_X_RunDiffusion_Hyper.safetensors",
+      "attribution": "Created by RunDiffusion in collaboration with Team Juggernaut (Kandoo) - Juggernaut X Hyper (v10) SFW/SAFE checkpoint for SDXL.",
+      "attribution_url": "https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper",
+      "license": "creativeml-openrail-m",
+      "data_provenance_notes": "RunDiffusion describes Juggernaut X Hyper as trained 'from the ground up' using a GPT-4 Vision captioning tool by LEOSAM, with an expanded/cleaner dataset and improved shot classifications. The model card lists SDXL 1.0 (stabilityai/stable-diffusion-xl-base-1.0) as the base model. Specific training dataset sources are not disclosed.",
+      "size_bytes": 7105348616
+    }
+  },
+{
+  "category": "checkpoints",
+  "requirement": "aiAngelMix_v30.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/aiAngelMix_v30.safetensors",
+    "attribution": "Created by aiangelgallery (Civitai user) - AI Angel Mix series by aiangelgallery, originally published August 18, 2023.",
+    "attribution_url": "https://civitai.com/models/428/ai-angel-mix",
+    "license": "CreativeML Open RAIL-M",
+    "data_provenance_notes": "SD 1.5 checkpoint merge blending CyberRealistic, epiCRealism, A-Zovya Photoreal, majicMIX realistic/fantasy, and others for realistic/fantasy generation with emphasis on Western/Asian subjects and Thai features. Trained entirely from publicly released checkpoints."
+  }
+},
+{
+  "category": "checkpoints",
+  "requirement": "albedobaseXL_v21.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/albedobaseXL_v21.safetensors",
+    "size_bytes": 6938041042,
+    "attribution": "Created by albedobond - AlbedoBase XL series by albedobond, originally published February 4, 2024.",
+    "attribution_url": "https://civitai.com/models/140737?modelVersionId=329420",
+    "license": "CreativeML Open RAIL++-M",
+    "data_provenance_notes": "AlbedoBase XL v2.1 is an SDXL 1.0 checkpoint merge by albedobond using a custom merging algorithm. It merges many curated checkpoints and LoRAs (across anime/realism/artistic/NSFW/base) into an all-in-one model; VAE is included and the refiner is described as unnecessary."
+  }
+},
+{
+  "category": "checkpoints",
+  "requirement": "realvisxlV50_v50LightningBakedvae.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/realvisxlV50_v50LightningBakedvae.safetensors",
+    "size_bytes": 6938065512,
+    "attribution": "Created by SG_161222 - RealVisXL V5.0 series by SG_161222, originally published September 2, 2024.",
+    "attribution_url": "https://civitai.com/models/139562/realvisxl-v50",
+    "license": "CreativeML Open RAIL++-M",
+    "data_provenance_notes": "RealVisXL V5.0 is an SDXL Lightning checkpoint merge by SG_161222 combining multiple models such as DreamShaper XL, Juggernaut XL, Noosphere, and HelloWorld XL to achieve high photorealism across SFW and NSFW content."
+  }
+},
+{
+  "category": "checkpoints",
+  "requirement": "sd_xl_base_1.0.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/sd_xl_base_1.0.safetensors",
+    "size_bytes": 6938078334,
+    "attribution": "Developed by Stability AI — Stable Diffusion XL (SDXL) Base 1.0.",
+    "attribution_url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+    "license": "CreativeML Open RAIL++-M",
+    "data_provenance_notes": "Official SDXL 1.0 base checkpoint released by Stability AI. The public model card does not enumerate specific training dataset sources; it points to the SDXL technical report for methodology details.",
+    "data_provenance_sources": [
+      "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+      "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/blob/main/LICENSE.md",
+      "https://ar5iv.org/abs/2307.01952"
+    ]
+  }
+},
+{
+  "category": "checkpoints",
+  "requirement": "sd_xl_refiner_1.0.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/sd_xl_refiner_1.0.safetensors",
+    "size_bytes": 6075981930,
+    "attribution": "Developed by Stability AI — Stable Diffusion XL (SDXL) Refiner 1.0.",
+    "attribution_url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0",
+    "license": "CreativeML Open RAIL++-M",
+    "data_provenance_notes": "Official SDXL 1.0 Refiner checkpoint by Stability AI, designed for the final denoising steps in the SDXL two-stage pipeline. The public model card does not enumerate specific training dataset sources; see the SDXL technical report for details.",
+    "data_provenance_sources": [
+      "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0",
+      "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/blob/main/LICENSE.md",
+      "https://arxiv.org/abs/2307.01952"
+    ]
+  }
+},
+{
+  "category": "clip_vision",
+  "requirement": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+    "size_bytes": 2528373448,
+    "attribution": "Published by LAION; OpenCLIP ViT-H/14 trained by Romain Beaumont (training run credited to Stability AI compute).",
+    "attribution_url": "https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
+    "license": "MIT",
+    "data_provenance_notes": "OpenCLIP ViT-H/14 trained on the 2B-sample English subset of LAION-5B (LAION-2B). Dataset is uncurated; LAION advises caution and research-oriented use.",
+    "data_provenance_sources": [
+      "https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
+      "https://laion.ai/blog/laion-5b/",
+      "https://github.com/mlfoundations/open_clip"
+    ]
+  }
+},
+{
+  "category": "clip_vision",
+  "requirement": "CLIP-ViT-bigG-14-laion2B-39B-b160k.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/clip_vision/CLIP-ViT-bigG-14-laion2B-39B-b160k.safetensors",
+    "size_bytes": 3689912664,
+    "attribution": "Published by LAION; model training done by Mitchell Wortsman using OpenCLIP (ViT-bigG/14).",
+    "attribution_url": "https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k",
+    "license": "MIT",
+    "data_provenance_notes": "Trained on LAION-5B's 2B English subset (LAION-2B) and partially fine-tuned on LAION-A (aesthetic-filtered, pHash-deduplicated). Dataset is large and uncurated; intended for research use.",
+    "data_provenance_sources": [
+      "https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k",
+      "https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k/blob/main/README.md",
+      "https://laion.ai/blog/laion-5b/",
+      "https://laion.ai/blog/giant-openclip/",
+      "https://github.com/mlfoundations/open_clip"
+    ]
+  }
+},
+{
+  "category": "ipadapter",
+  "requirement": "ip-adapter-plus_sd15.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/ipadapter/ip-adapter-plus_sd15.safetensors",
+    "size_bytes": 98183288,
+    "attribution": "Created by Tencent AI Lab (tencent-ailab) - IP-Adapter (IP-Adapter Plus for SD 1.5).",
+    "attribution_url": "https://ip-adapter.github.io/",
+    "license": "Apache-2.0",
+    "data_provenance_notes": "IP-Adapter Plus for Stable Diffusion 1.5; conditions SD on patch-level image embeddings from OpenCLIP ViT-H/14 via a lightweight adapter, with the base diffusion model kept frozen.",
+    "data_provenance_sources": [
+      "https://ip-adapter.github.io/",
+      "https://github.com/tencent-ailab/IP-Adapter",
+      "https://huggingface.co/h94/IP-Adapter",
+      "https://huggingface.co/h94/IP-Adapter/blob/main/models/ip-adapter-plus_sd15.safetensors",
+      "https://arxiv.org/abs/2308.06721"
+    ]
+  }
+},
+{
+  "category": "ipadapter",
+  "requirement": "ip-adapter-plus_sdxl_vit-h.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors",
+    "size_bytes": 847517512,
+    "attribution": "Created by Tencent AI Lab (tencent-ailab) - IP-Adapter (IP-Adapter Plus for SDXL, ViT-H variant).",
+    "attribution_url": "https://ip-adapter.github.io/",
+    "license": "Apache-2.0",
+    "data_provenance_notes": "IP-Adapter Plus weights for SDXL that condition generation on patch-level image embeddings from an OpenCLIP ViT-H image encoder via a lightweight adapter (image-prompt conditioning for a pretrained text-to-image diffusion model).",
+    "data_provenance_sources": [
+      "https://ip-adapter.github.io/",
+      "https://github.com/tencent-ailab/IP-Adapter",
+      "https://huggingface.co/h94/IP-Adapter",
+      "https://huggingface.co/h94/IP-Adapter/blob/main/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors",
+      "https://huggingface.co/docs/diffusers/en/using-diffusers/ip_adapter",
+      "https://arxiv.org/abs/2308.06721"
+    ]
+  }
+},
+{
+  "category": "controlnet",
+  "requirement": "control-lora-depth-rank128.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/controlnet/control-lora-depth-rank128.safetensors",
+    "size_bytes": 395729267,
+    "attribution": "Developed by Stability AI - Control-LoRA Depth (rank 128).",
+    "attribution_url": "https://huggingface.co/stabilityai/control-lora",
+    "license": "Stability AI Control-LoRA Community License Agreement",
+    "data_provenance_notes": "Stability AI Control-LoRA depth (rank 128): low-rank finetuning of ControlNet for depth-guided generation. Trained on MiDaS dpt_beit_large_512 depth maps and further fine-tuned using ClipDrop’s Portrait Depth Estimation outputs.",
+    "data_provenance_sources": [
+      "https://huggingface.co/stabilityai/control-lora",
+      "https://huggingface.co/stabilityai/control-lora/blob/main/README.md",
+      "https://huggingface.co/stabilityai/control-lora/blob/main/LICENSE.MD"
+    ]
+  }
+},
+{
+  "category": "controlnet",
+  "requirement": "diffusion_pytorch_model.safetensors",
+  "provenance": {
+    "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/controlnet/diffusion_pytorch_model.safetensors",
+    "size_bytes": 2502139136,
+    "attribution": "Likely by xinsir - ControlNet Depth for SDXL (diffusers-format weights).",
+    "attribution_url": "https://huggingface.co/xinsir/controlnet-depth-sdxl-1.0",
+    "license": "Apache-2.0",
+    "data_provenance_notes": "Diffusers-format ControlNet for SDXL. Filename+size match xinsir/controlnet-depth-sdxl-1.0 (Apache-2.0), which accepts Zoe/MiDaS depth maps. Upstream page does not specify training dataset sources.",
+    "data_provenance_sources": [
+      "https://huggingface.co/xinsir/controlnet-depth-sdxl-1.0",
+      "https://huggingface.co/xinsir/controlnet-depth-sdxl-1.0/blob/main/diffusion_pytorch_model.safetensors",
+      "https://arxiv.org/abs/2302.05543"
+    ]
+  }
+},
+  {
+    "category": "loras",
+    "requirement": "AlphonseMucha.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/loras/AlphonseMucha.safetensors",
+      "size_bytes": 228485036,
+      "data_provenance_notes": "Provenance has been lost: this LoRA was sourced from Civitai at some point, but the specific model page, creator, version, and license were not recorded (and the file may have been renamed)."      
+    }
+  },
+  {
+    "category": "loras",
+    "requirement": "Brushstrokes.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/loras/Brushstrokes.safetensors",
+      "size_bytes": 228518812,
+      "data_provenance_notes": "Provenance has been lost: this LoRA was sourced from Civitai at some point, but the specific model page, creator, version, and license were not recorded (and the file may have been renamed)."      
+    }
+  },
+  {
+    "category": "loras",
+    "requirement": "ColoringBook.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/loras/ColoringBook.safetensors",
+      "size_bytes": 170540036,
+      "data_provenance_notes": "Provenance has been lost: this LoRA was sourced from Civitai at some point, but the specific model page, creator, version, and license were not recorded (and the file may have been renamed)."      
+    }
+  },
+  {
+    "category": "loras",
+    "requirement": "DelicateWhimsy.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/loras/DelicateWhimsy.safetensors",
+      "size_bytes": 228509476,
+      "data_provenance_notes": "Provenance has been lost: this LoRA was sourced from Civitai at some point, but the specific model page, creator, version, and license were not recorded (and the file may have been renamed)."      
+    }
+  },
+  {
+    "category": "loras",
+    "requirement": "EldritchCharcoal.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/loras/EldritchCharcoal.safetensors",
+      "size_bytes": 106733624,
+      "data_provenance_notes": "Provenance has been lost: this LoRA was sourced from Civitai at some point, but the specific model page, creator, version, and license were not recorded (and the file may have been renamed)."      
+    }
+  },
+  {
+    "category": "loras",
+    "requirement": "PixelArt.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/loras/PixelArt.safetensors",
+      "size_bytes": 170543052,
+      "data_provenance_notes": "Provenance has been lost: this LoRA was sourced from Civitai at some point, but the specific model page, creator, version, and license were not recorded (and the file may have been renamed)."      
+    }
+  },
+  {
+    "category": "loras",
+    "requirement": "SketchIt.safetensors",
+    "provenance": {
+      "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/loras/SketchIt.safetensors",
+      "size_bytes": 228474772,
+      "data_provenance_notes": "Provenance has been lost: this LoRA was sourced from Civitai at some point, but the specific model page, creator, version, and license were not recorded (and the file may have been renamed)."      
+    }
+  }
+]
