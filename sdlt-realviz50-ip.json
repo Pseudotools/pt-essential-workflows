@@ -69,7 +69,10 @@
             "category": "custom_nodes",
             "requirement": "pseudocomfy",
             "provenance": {
-                "download_url": "https://github.com/pseudocode-ai/pseudocomfy"
+                "attribution": "Pseudotools - Pseudocomfy custom nodes for ComfyUI.",
+                "attribution_url": "https://github.com/pseudotools/",
+                "download_url": "https://github.com/pseudotools/pseudocomfy",
+                "license": "GNU General Public License v3.0"
             }
         },
         {
