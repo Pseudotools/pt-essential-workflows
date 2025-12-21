@@ -1,39 +1,69 @@
 {
-    "id": "[unique_id_same_as_filename]",
-    "type": "comfy",
-    "name": "[human_readable_name_for_display]",
-    "description": "[workflow description]",
-    "pseudorandom_workflow_scheme_version": 0.1,
-    "variables": [
-        {
-            "name": "Steps",
-            "key": "__STEPS__",
-            "type": "int",
-            "default": 15,
-            "range": [0,50],
-            "description": "[human-readable description]"
-        }
-    ],
-    "endpoint_requirements" : {
-        "checkpoints": [
-            "[modelname].safetensors"
-        ],
-        "custom_nodes": [
-            "pseudocomfy"
-        ],
-        "controlnet": [
-            "control-lora-depth-rank128.safetensors"
-        ],
-        "ipadapter": []
-    },
-    "prompt_requirements": {
-            "image": false,
-            "text": true
-    },
-    "workflow": {
-
-
-
-      
+  "type": "comfy",
+  "name": "[human_readable_name_for_display]",
+  "description": "[workflow description]",
+  "pseudorandom_workflow_schema_version": 0.3,
+  "global_guidance_capabilities": {
+    "txt_scene": true,
+    "txt_style": true,
+    "txt_negative": true,
+    "img_style": false
+  },
+  "regional_guidance_capabilities": {
+    "text": true,
+    "image": false
+  },
+  "spatial_guidance_capabilities": {
+    "depth": true,
+    "edge": false
+  },
+  "variables": [
+    {
+      "name": "Steps",
+      "type": "int",
+      "description": "[human-readable description]",
+      "default": 15,
+      "binds_to": "__STEPS__",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "is_basic": true
     }
+  ],
+  "endpoint_requirements": [
+    {
+      "category": "checkpoints",
+      "requirement": "[modelname].safetensors",
+      "description": "[optional description of the checkpoint]",
+      "notes": "[optional notes or warnings]",
+      "provenance": {
+        "download_url": "[required URL to download the checkpoint]",
+        "attribution": "[optional attribution text]",
+        "attribution_url": "[optional attribution page URL]",
+        "license": "[optional license identifier]",
+        "data_provenance_notes": "[optional notes about training data source]",
+        "size_bytes": 0,
+        "last_downloaded_yymmdd": "[optional YYMMDD format]"
+      }
+    },
+    {
+      "category": "custom_nodes",
+      "requirement": "pseudocomfy",
+      "description": "[optional description]",
+      "provenance": {
+        "download_url": "[required URL to download or install the custom node]"
+      }
+    },
+    {
+      "category": "controlnet",
+      "requirement": "control-lora-depth-rank128.safetensors",
+      "description": "[optional description]",
+      "provenance": {
+        "download_url": "[required URL to download the controlnet model]"
+      }
+    }
+  ],
+  "workflow": {
+    // ComfyUI node graph goes here
+  }
 }
