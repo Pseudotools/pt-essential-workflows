@@ -1,470 +1,500 @@
 {
-  "type": "comfy",
-  "name": "Unit Test",
-  "description": "a workflow locked to one step for testing purposes",
-
-  "pseudorandom_workflow_schema_version": 0.2,
-
-  "global_guidance_capabilities": {
-    "txt_scene": true,
-    "txt_style": true,
-    "txt_negative": true,
-    "img_style": false
-  },
-
-  "regional_guidance_capabilities": {
-    "text": true,
-    "image": false
-  },
-
-  "spatial_guidance_capabilities": {
-    "depth": true,
-    "edge": true
-  },
-
-  "variables": [
-    {
-      "name": "Adherence",
-      "type": "float",
-      "description": "How much to follow model geometry via ControlNet depth.",
-      "default": 0.8,
-      "min": 0.0,
-      "max": 1.0,
-      "binds_to": "__ADHERENCE__"
+    "type": "comfy",
+    "name": "Unit Test",
+    "description": "a workflow locked to one step for testing purposes",
+    "pseudorandom_workflow_schema_version": 0.3,
+    "global_guidance_capabilities": {
+        "txt_scene": true,
+        "txt_style": true,
+        "txt_negative": true,
+        "img_style": false
     },
-    {
-      "name": "Mask Softness",
-      "type": "int",
-      "description": "How much to 'soften' material prompt masks—softer masks apply to wider areas; harder ones are more constrained.",
-      "default": 1,
-      "min": 0,
-      "max": 10,
-      "binds_to": "__MASK_SOFTNESS__"
+    "regional_guidance_capabilities": {
+        "text": true,
+        "image": false
     },
-    {
-      "name": "Three",
-      "key": "__THREE__",
-      "type": "string",
-      "description": "How much to do the third thing.",
-      "default": "i am a default",
-      "binds_to": "__THREE__"
+    "spatial_guidance_capabilities": {
+        "depth": true,
+        "edge": true
     },
-    {
-      "name": "Sampler Method",
-      "key": "__SAMPLER__",
-      "type": "string",
-      "description": "Algorithm used for denoising.",
-      "is_basic": false,
-      "default": "euler",
-      "enum_options": {
-        "euler": "Fast E",
-        "ddim": "DDIM, y",
-        "dpmpp_2m": "DPM++ 2M",
-        "heun": "honey"
-      },
-      "binds_to": "__SAMPLER__"
-    },
-    {
-      "name": "Enable High Resolution",
-      "key": "__HIGH_RES__",
-      "type": "bool",
-      "description": "Enable high-resolution image generation.",
-      "is_basic": false,
-      "default": true,
-      "binds_to": "__HIGH_RES__"
-    }    
-  ],
-
-  "endpoint_requirements": {
-    "checkpoints": [
-      "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+    "variables": [
+        {
+            "name": "Adherence",
+            "type": "float",
+            "description": "How much to follow model geometry via ControlNet depth.",
+            "default": 0.8,
+            "min": 0,
+            "max": 1,
+            "binds_to": "__ADHERENCE__"
+        },
+        {
+            "name": "Mask Softness",
+            "type": "int",
+            "description": "How much to 'soften' material prompt masks—softer masks apply to wider areas; harder ones are more constrained.",
+            "default": 1,
+            "min": 0,
+            "max": 10,
+            "binds_to": "__MASK_SOFTNESS__"
+        },
+        {
+            "name": "Three",
+            "key": "__THREE__",
+            "type": "string",
+            "description": "How much to do the third thing.",
+            "default": "i am a default",
+            "binds_to": "__THREE__"
+        },
+        {
+            "name": "Sampler Method",
+            "key": "__SAMPLER__",
+            "type": "string",
+            "description": "Algorithm used for denoising.",
+            "is_basic": false,
+            "default": "euler",
+            "enum_options": {
+                "euler": "Fast E",
+                "ddim": "DDIM, y",
+                "dpmpp_2m": "DPM++ 2M",
+                "heun": "honey"
+            },
+            "binds_to": "__SAMPLER__"
+        },
+        {
+            "name": "Enable High Resolution",
+            "key": "__HIGH_RES__",
+            "type": "bool",
+            "description": "Enable high-resolution image generation.",
+            "is_basic": false,
+            "default": true,
+            "binds_to": "__HIGH_RES__"
+        }
     ],
-    "custom_nodes": [
-      "pseudocomfy"
+    "endpoint_requirements": [
+        {
+            "category": "checkpoints",
+            "requirement": "Juggernaut_X_RunDiffusion_Hyper.safetensors",
+            "provenance": {
+                "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/Juggernaut_X_RunDiffusion_Hyper.safetensors",
+                "attribution": "Created by RunDiffusion in collaboration with Team Juggernaut (Kandoo) - Juggernaut X Hyper (v10) SFW/SAFE checkpoint for SDXL.",
+                "attribution_url": "https://huggingface.co/RunDiffusion/Juggernaut-X-Hyper",
+                "license": "creativeml-openrail-m",
+                "data_provenance_notes": "RunDiffusion describes Juggernaut X Hyper as trained 'from the ground up' using a GPT-4 Vision captioning tool by LEOSAM, with an expanded/cleaner dataset and improved shot classifications. The model card lists SDXL 1.0 (stabilityai/stable-diffusion-xl-base-1.0) as the base model. Specific training dataset sources are not disclosed.",
+                "size_bytes": 7105348616
+            }
+        },
+        {
+            "category": "checkpoints",
+            "requirement": "sd_xl_refiner_1.0.safetensors",
+            "provenance": {
+                "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/checkpoints/sd_xl_refiner_1.0.safetensors",
+                "size_bytes": 6075981930,
+                "attribution": "Developed by Stability AI — Stable Diffusion XL (SDXL) Refiner 1.0.",
+                "attribution_url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0",
+                "license": "CreativeML Open RAIL++-M",
+                "data_provenance_notes": "Official SDXL 1.0 Refiner checkpoint by Stability AI, designed for the final denoising steps in the SDXL two-stage pipeline. The public model card does not enumerate specific training dataset sources; see the SDXL technical report for details."
+            }
+        },
+        {
+            "category": "custom_nodes",
+            "requirement": "pseudocomfy",
+            "provenance": {
+                "attribution": "Pseudotools - Pseudocomfy custom nodes for ComfyUI.",
+                "attribution_url": "https://github.com/pseudotools/",
+                "download_url": "https://github.com/pseudotools/pseudocomfy",
+                "license": "GNU General Public License v3.0"
+            }
+        },
+        {
+            "category": "controlnet",
+            "requirement": "control-lora-depth-rank128.safetensors",
+            "provenance": {
+                "download_url": "https://huggingface.co/pseudotools/pseudocomfy-models/blob/main/controlnet/control-lora-depth-rank128.safetensors",
+                "size_bytes": 395729267,
+                "attribution": "Developed by Stability AI - Control-LoRA Depth (rank 128).",
+                "attribution_url": "https://huggingface.co/stabilityai/control-lora",
+                "license": "Stability AI Control-LoRA Community License Agreement",
+                "data_provenance_notes": "Stability AI Control-LoRA depth (rank 128): low-rank finetuning of ControlNet for depth-guided generation. Trained on MiDaS dpt_beit_large_512 depth maps and further fine-tuned using ClipDrop's Portrait Depth Estimation outputs."
+            }
+        }
     ],
-    "controlnet": [
-      "control-lora-depth-rank128.safetensors"
-    ]
-  },
-    
     "workflow": {
-  "1": {
-    "inputs": {
-      "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Load Checkpoint"
+        "1": {
+            "inputs": {
+                "ckpt_name": "Juggernaut_X_RunDiffusion_Hyper.safetensors"
+            },
+            "class_type": "CheckpointLoaderSimple",
+            "_meta": {
+                "title": "Load Checkpoint"
+            }
+        },
+        "39": {
+            "inputs": {
+                "strength": [
+                    "148",
+                    0
+                ],
+                "start_percent": 0,
+                "end_percent": [
+                    "149",
+                    0
+                ],
+                "positive": [
+                    "139",
+                    1
+                ],
+                "negative": [
+                    "139",
+                    2
+                ],
+                "control_net": [
+                    "46",
+                    0
+                ],
+                "image": [
+                    "150",
+                    2
+                ]
+            },
+            "class_type": "ControlNetApplyAdvanced",
+            "_meta": {
+                "title": "Apply ControlNet"
+            }
+        },
+        "41": {
+            "inputs": {
+                "samples": [
+                    "47",
+                    0
+                ],
+                "vae": [
+                    "1",
+                    2
+                ]
+            },
+            "class_type": "VAEDecode",
+            "_meta": {
+                "title": "VAE Decode"
+            }
+        },
+        "43": {
+            "inputs": {
+                "width": [
+                    "150",
+                    0
+                ],
+                "height": [
+                    "150",
+                    1
+                ],
+                "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage",
+            "_meta": {
+                "title": "Empty Latent Image"
+            }
+        },
+        "46": {
+            "inputs": {
+                "control_net_name": "control-lora-depth-rank128.safetensors"
+            },
+            "class_type": "ControlNetLoader",
+            "_meta": {
+                "title": "Load ControlNet Model"
+            }
+        },
+        "47": {
+            "inputs": {
+                "seed": "__PSEUDORANDOM_SEED__",
+                "steps": 1,
+                "cfg": 1.3,
+                "sampler_name": "dpmpp_sde",
+                "scheduler": "karras",
+                "denoise": 1,
+                "model": [
+                    "139",
+                    0
+                ],
+                "positive": [
+                    "39",
+                    0
+                ],
+                "negative": [
+                    "39",
+                    1
+                ],
+                "latent_image": [
+                    "43",
+                    0
+                ]
+            },
+            "class_type": "KSampler",
+            "_meta": {
+                "title": "KSampler"
+            }
+        },
+        "124": {
+            "inputs": {
+                "filename_prefix": "ComfyUI",
+                "images": [
+                    "41",
+                    0
+                ]
+            },
+            "class_type": "SaveImage",
+            "_meta": {
+                "title": "Save Image"
+            }
+        },
+        "133": {
+            "inputs": {
+                "string_path": "__PSEUDORANDOM_TEMP_PATH__"
+            },
+            "class_type": "PseudoLoadModelSnapshot",
+            "_meta": {
+                "title": "Load Model Snapshot"
+            }
+        },
+        "134": {
+            "inputs": {
+                "json_data": [
+                    "133",
+                    0
+                ]
+            },
+            "class_type": "PseudoUnpackModelSnapshot",
+            "_meta": {
+                "title": "Unpack Model Snapshot"
+            }
+        },
+        "137": {
+            "inputs": {
+                "scale_msk_to": "1024",
+                "Filler1": "",
+                "Filler2": "",
+                "Filler3": "",
+                "Filler4": "",
+                "Filler5": "",
+                "Filler6": "",
+                "mat_txts_lst": [
+                    "134",
+                    0
+                ],
+                "mat_imgs_lst": [
+                    "134",
+                    1
+                ],
+                "mat_msks_lst": [
+                    "155",
+                    0
+                ]
+            },
+            "class_type": "PseudoProcessMaterialPrompts",
+            "_meta": {
+                "title": "Process Material Prompt Guidence"
+            }
+        },
+        "138": {
+            "inputs": {
+                "env_scene": [
+                    "134",
+                    3
+                ],
+                "env_style": [
+                    "134",
+                    4
+                ],
+                "env_negative": [
+                    "134",
+                    5
+                ]
+            },
+            "class_type": "PseudoProcessEnvironmentalPrompts",
+            "_meta": {
+                "title": "Process Environmental Prompt Guidence"
+            }
+        },
+        "139": {
+            "inputs": {
+                "model": [
+                    "1",
+                    0
+                ],
+                "clip": [
+                    "1",
+                    1
+                ],
+                "mat_txts_lst": [
+                    "137",
+                    0
+                ],
+                "mat_msks_lst": [
+                    "137",
+                    2
+                ],
+                "env_scene": [
+                    "138",
+                    0
+                ],
+                "env_style": [
+                    "138",
+                    1
+                ],
+                "env_negative": [
+                    "138",
+                    2
+                ],
+                "width": [
+                    "150",
+                    0
+                ],
+                "height": [
+                    "150",
+                    1
+                ]
+            },
+            "class_type": "PseudoApplyDenseDiffusionSDXL",
+            "_meta": {
+                "title": "Apply Dense Diffusion Conditioning (SDXL)"
+            }
+        },
+        "147": {
+            "inputs": {
+                "value": "__ADHERENCE__"
+            },
+            "class_type": "PrimitiveFloat",
+            "_meta": {
+                "title": "ADHERENCE"
+            }
+        },
+        "148": {
+            "inputs": {
+                "tgt_min": 0.30000000000000004,
+                "tgt_max": 1,
+                "val": [
+                    "147",
+                    0
+                ]
+            },
+            "class_type": "PseudoRemapNormalizedFloat",
+            "_meta": {
+                "title": "Remap Float"
+            }
+        },
+        "149": {
+            "inputs": {
+                "tgt_min": 0.1,
+                "tgt_max": 0.9,
+                "val": [
+                    "147",
+                    0
+                ]
+            },
+            "class_type": "PseudoRemapNormalizedFloat",
+            "_meta": {
+                "title": "Remap Float"
+            }
+        },
+        "150": {
+            "inputs": {
+                "scale_img_to": "1024",
+                "Filler1": "",
+                "Filler2": "",
+                "img": [
+                    "134",
+                    6
+                ]
+            },
+            "class_type": "PseudoProcessImagePrompt",
+            "_meta": {
+                "title": "Process Image Prompt"
+            }
+        },
+        "151": {
+            "inputs": {
+                "rounding": "round",
+                "val": [
+                    "152",
+                    0
+                ]
+            },
+            "class_type": "PseudoFloatToInt",
+            "_meta": {
+                "title": "Float to Int"
+            }
+        },
+        "152": {
+            "inputs": {
+                "tgt_min": 1,
+                "tgt_max": 8,
+                "val": [
+                    "153",
+                    0
+                ]
+            },
+            "class_type": "PseudoRemapNormalizedFloat",
+            "_meta": {
+                "title": "Remap Float"
+            }
+        },
+        "153": {
+            "inputs": {
+                "value": "__MASK_SOFTNESS__"
+            },
+            "class_type": "PrimitiveFloat",
+            "_meta": {
+                "title": "MASK_SOFTNESS"
+            }
+        },
+        "154": {
+            "inputs": {
+                "tgt_min": 1,
+                "tgt_max": 10,
+                "val": [
+                    "153",
+                    0
+                ]
+            },
+            "class_type": "PseudoRemapNormalizedFloat",
+            "_meta": {
+                "title": "Remap Float"
+            }
+        },
+        "155": {
+            "inputs": {
+                "blur_radius": 25,
+                "sigma": [
+                    "154",
+                    0
+                ],
+                "invert": false,
+                "msks_list": [
+                    "156",
+                    0
+                ]
+            },
+            "class_type": "PseudoMaskBlur",
+            "_meta": {
+                "title": "Blur Mask"
+            }
+        },
+        "156": {
+            "inputs": {
+                "operation": "dilate (grow white areas)",
+                "kernel_size": 3,
+                "iterations": [
+                    "151",
+                    0
+                ],
+                "invert": false,
+                "msks_list": [
+                    "134",
+                    2
+                ]
+            },
+            "class_type": "PseudoMaskReshape",
+            "_meta": {
+                "title": "Reshape Mask"
+            }
+        }
     }
-  },
-  "39": {
-    "inputs": {
-      "strength": [
-        "148",
-        0
-      ],
-      "start_percent": 0,
-      "end_percent": [
-        "149",
-        0
-      ],
-      "positive": [
-        "139",
-        1
-      ],
-      "negative": [
-        "139",
-        2
-      ],
-      "control_net": [
-        "46",
-        0
-      ],
-      "image": [
-        "150",
-        2
-      ]
-    },
-    "class_type": "ControlNetApplyAdvanced",
-    "_meta": {
-      "title": "Apply ControlNet"
-    }
-  },
-  "41": {
-    "inputs": {
-      "samples": [
-        "47",
-        0
-      ],
-      "vae": [
-        "1",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE Decode"
-    }
-  },
-  "43": {
-    "inputs": {
-      "width": [
-        "150",
-        0
-      ],
-      "height": [
-        "150",
-        1
-      ],
-      "batch_size": 1
-    },
-    "class_type": "EmptyLatentImage",
-    "_meta": {
-      "title": "Empty Latent Image"
-    }
-  },
-  "46": {
-    "inputs": {
-      "control_net_name": "control-lora-depth-rank128.safetensors"
-    },
-    "class_type": "ControlNetLoader",
-    "_meta": {
-      "title": "Load ControlNet Model"
-    }
-  },
-  "47": {
-    "inputs": {
-      "seed": "__PSEUDORANDOM_SEED__",
-      "steps": 1,
-      "cfg": 1.3,
-      "sampler_name": "dpmpp_sde",
-      "scheduler": "karras",
-      "denoise": 1,
-      "model": [
-        "139",
-        0
-      ],
-      "positive": [
-        "39",
-        0
-      ],
-      "negative": [
-        "39",
-        1
-      ],
-      "latent_image": [
-        "43",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "KSampler"
-    }
-  },
-  "124": {
-    "inputs": {
-      "filename_prefix": "ComfyUI",
-      "images": [
-        "41",
-        0
-      ]
-    },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Save Image"
-    }
-  },
-  "133": {
-    "inputs": {
-      "string_path": "__PSEUDORANDOM_TEMP_PATH__"
-    },
-    "class_type": "PseudoLoadModelSnapshot",
-    "_meta": {
-      "title": "Load Model Snapshot"
-    }
-  },
-  "134": {
-    "inputs": {
-      "json_data": [
-        "133",
-        0
-      ]
-    },
-    "class_type": "PseudoUnpackModelSnapshot",
-    "_meta": {
-      "title": "Unpack Model Snapshot"
-    }
-  },
-  "137": {
-    "inputs": {
-      "scale_msk_to": "1024",
-      "Filler1": "",
-      "Filler2": "",
-      "Filler3": "",
-      "Filler4": "",
-      "Filler5": "",
-      "Filler6": "",
-      "mat_txts_lst": [
-        "134",
-        0
-      ],
-      "mat_imgs_lst": [
-        "134",
-        1
-      ],
-      "mat_msks_lst": [
-        "155",
-        0
-      ]
-    },
-    "class_type": "PseudoProcessMaterialPrompts",
-    "_meta": {
-      "title": "Process Material Prompt Guidence"
-    }
-  },
-  "138": {
-    "inputs": {
-      "env_scene": [
-        "134",
-        3
-      ],
-      "env_style": [
-        "134",
-        4
-      ],
-      "env_negative": [
-        "134",
-        5
-      ]
-    },
-    "class_type": "PseudoProcessEnvironmentalPrompts",
-    "_meta": {
-      "title": "Process Environmental Prompt Guidence"
-    }
-  },
-  "139": {
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "mat_txts_lst": [
-        "137",
-        0
-      ],
-      "mat_msks_lst": [
-        "137",
-        2
-      ],
-      "env_scene": [
-        "138",
-        0
-      ],
-      "env_style": [
-        "138",
-        1
-      ],
-      "env_negative": [
-        "138",
-        2
-      ],
-      "width": [
-        "150",
-        0
-      ],
-      "height": [
-        "150",
-        1
-      ]
-    },
-    "class_type": "PseudoApplyDenseDiffusionSDXL",
-    "_meta": {
-      "title": "Apply Dense Diffusion Conditioning (SDXL)"
-    }
-  },
-  "147": {
-    "inputs": {
-      "value": "__ADHERENCE__"
-    },
-    "class_type": "PrimitiveFloat",
-    "_meta": {
-      "title": "ADHERENCE"
-    }
-  },
-  "148": {
-    "inputs": {
-      "tgt_min": 0.30000000000000004,
-      "tgt_max": 1,
-      "val": [
-        "147",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "149": {
-    "inputs": {
-      "tgt_min": 0.1,
-      "tgt_max": 0.9,
-      "val": [
-        "147",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "150": {
-    "inputs": {
-      "scale_img_to": "1024",
-      "Filler1": "",
-      "Filler2": "",
-      "img": [
-        "134",
-        6
-      ]
-    },
-    "class_type": "PseudoProcessImagePrompt",
-    "_meta": {
-      "title": "Process Image Prompt"
-    }
-  },
-  "151": {
-    "inputs": {
-      "rounding": "round",
-      "val": [
-        "152",
-        0
-      ]
-    },
-    "class_type": "PseudoFloatToInt",
-    "_meta": {
-      "title": "Float to Int"
-    }
-  },
-  "152": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 8,
-      "val": [
-        "153",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "153": {
-    "inputs": {
-      "value": "__MASK_SOFTNESS__"
-    },
-    "class_type": "PrimitiveFloat",
-    "_meta": {
-      "title": "MASK_SOFTNESS"
-    }
-  },
-  "154": {
-    "inputs": {
-      "tgt_min": 1,
-      "tgt_max": 10,
-      "val": [
-        "153",
-        0
-      ]
-    },
-    "class_type": "PseudoRemapNormalizedFloat",
-    "_meta": {
-      "title": "Remap Float"
-    }
-  },
-  "155": {
-    "inputs": {
-      "blur_radius": 25,
-      "sigma": [
-        "154",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "156",
-        0
-      ]
-    },
-    "class_type": "PseudoMaskBlur",
-    "_meta": {
-      "title": "Blur Mask"
-    }
-  },
-  "156": {
-    "inputs": {
-      "operation": "dilate (grow white areas)",
-      "kernel_size": 3,
-      "iterations": [
-        "151",
-        0
-      ],
-      "invert": false,
-      "msks_list": [
-        "134",
-        2
-      ]
-    },
-    "class_type": "PseudoMaskReshape",
-    "_meta": {
-      "title": "Reshape Mask"
-    }
-  }
-}
 }
